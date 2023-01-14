@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Eventi</string>
+
+    <!--  -->
+    <string name="search">Search</string>
+
+    <!-- Events -->
+    <string name="online_event">Online event</string>
+    <string name="live_event">Live event</string>
+
+    <!-- My Events -->
+    <string name="my_events">My events</string>
+</resources>
