@@ -8,9 +8,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import com.example.eventi.navigation.Screen
 import com.example.eventi.ui.theme.PrimaryOrange
 
 @Composable
