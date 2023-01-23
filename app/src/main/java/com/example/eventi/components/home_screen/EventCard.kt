@@ -54,7 +54,7 @@ fun EventCard(
                 Column(
                     modifier
                         .fillMaxWidth()
-                        .padding(start = 16.dp)
+                        .padding(start = 16.dp, end = 16.dp)
                 ) {
                     Column {
                         Text(
@@ -68,39 +68,7 @@ fun EventCard(
                         )
                     }
                     Spacer(Modifier.height(8.dp))
-                    Row {
-                        //--------- tva sig trqbva da se extractne
-                        if (event.eventType == EventType.ONLINE) {
-                            Icon(
-                                Icons.Default.LocationOn,
-                                contentDescription = null
-                            )
-                            Text(
-                                text = stringResource(R.string.online_event),
-                                modifier.paddingFromBaseline(top = 20.dp)
-                            )
-                        } else {
-                            Icon(
-                                Icons.Default.AccountBox,
-                                contentDescription = null,
-                                modifier.padding(end = 6.dp)
-                            )
-                            Text(
-                                text = stringResource(R.string.live_event),
-                                modifier.paddingFromBaseline(top = 20.dp)
-                            )
-                        }
-                        // ---------------------------------------------
-                        IconButton(
-                            onClick = { /*TODO*/ }
-                        ) {
-                            Icon(
-                                Icons.Outlined.Bookmark,
-                                contentDescription = null,
-                                tint = Blue
-                            )
-                        }
-                    }
+                    EventTypeRow(modifier, event.eventType)
                 }
             }
         }
@@ -126,3 +94,55 @@ val imagesList = listOf(
     R.drawable.img_1,
     R.drawable.img_2
 )
+
+@Composable
+fun EventTypeRow(
+    modifier: Modifier,
+    eventType: EventType
+){
+    if (eventType == EventType.LIVE){
+        return Row(
+        ) {
+            Icon(
+                Icons.Default.LocationOn,
+                contentDescription = null
+            )
+            Text(
+                text = stringResource(R.string.online_event),
+                modifier.paddingFromBaseline(top = 20.dp)
+            )
+            Spacer(modifier = modifier.weight(2f))
+            IconButton(
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(
+                    Icons.Outlined.Bookmark,
+                    contentDescription = null,
+                    tint = Blue
+                )
+            }
+        }
+    } else {
+        return Row {
+            Icon(
+                Icons.Default.AccountBox,
+                contentDescription = null,
+                modifier.padding(end = 6.dp)
+            )
+            Text(
+                text = stringResource(R.string.live_event),
+                modifier.paddingFromBaseline(top = 20.dp)
+            )
+            Spacer(modifier = modifier.weight(2f))
+            IconButton(
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(
+                    Icons.Outlined.Bookmark,
+                    contentDescription = null,
+                    tint = Blue
+                )
+            }
+        }
+    }
+}

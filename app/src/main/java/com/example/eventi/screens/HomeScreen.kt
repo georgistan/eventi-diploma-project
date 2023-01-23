@@ -36,6 +36,7 @@ fun HomeScreen(
             item { EventsRow() }
             item { FutureEventsColumn() }
             item { ExploreSection() }
+            item { Spacer(modifier = modifier.height(80.dp)) }
         }
     }
 }
