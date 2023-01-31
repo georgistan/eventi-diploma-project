@@ -32,12 +32,6 @@ fun BottomNavigation(
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
-//                    when (item.title) {
-//                        "Home" -> Icon(Icons.Default.Home, contentDescription = null)
-//                        "My Events" -> Icon(Icons.Default.CalendarToday, contentDescription = null)
-//                        "Memories" -> Icon(Icons.Default.EditCalendar, contentDescription = null)
-//                        "Analytics" -> Icon(Icons.Default.Analytics, contentDescription = null)
-//                    }
                     item.icon
                     item.title
                 },
@@ -50,9 +44,9 @@ fun BottomNavigation(
                 selectedContentColor = Color.Black,
                 unselectedContentColor = Color.Black.copy(0.4f),
                 alwaysShowLabel = true,
-                selected = currentRoute == item.screen_route,
+                selected = currentRoute == item.screen.route,
                 onClick = {
-                    navController.navigate(item.screen_route) {
+                    navController.navigate(item.screen.route) {
 
                         navController.graph.startDestinationRoute?.let { screen_route ->
                             popUpTo(screen_route) {
