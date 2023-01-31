@@ -14,7 +14,7 @@ import com.example.eventi.components.interest_screen.InterestItemsGrid
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun InterestsScreen(
-    navController: NavController,
+    onClickDoneButton: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold {
@@ -24,7 +24,7 @@ fun InterestsScreen(
         ) {
             Header()
             InterestItemsGrid(modifier = modifier.weight(2f))
-            DoneButton(navController = navController)
+            DoneButton(onClickDoneButton = onClickDoneButton)
         }
     }
 }

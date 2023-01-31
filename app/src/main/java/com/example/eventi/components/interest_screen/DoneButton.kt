@@ -15,15 +15,12 @@ import com.example.eventi.ui.theme.PrimaryOrange
 
 @Composable
 fun DoneButton(
-    navController: NavController,
+    onClickDoneButton: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Button(
         shape = RoundedCornerShape(10),
-        onClick = {
-            print("Button clicked")
-            navController.navigate(Screen.HomeScreen.route)
-        },
+        onClick = onClickDoneButton,
         colors = ButtonDefaults.buttonColors(PrimaryOrange),
         modifier = modifier
             .fillMaxWidth()
