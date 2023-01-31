@@ -15,15 +15,16 @@ sealed class Screen(
     object MyEventsScreen : Screen("my_events_screen")
     object MemoriesScreen : Screen("memories_screen")
     object AnalyticsScreen : Screen("analytics_screen")
+    object SingleEventScreen : Screen("single_event_screen")
 }
 
 sealed class BottomNavItem(
     val title: String,
     val icon: ImageVector,
-    val screen_route: String
+    val screen: Screen
 ) {
-    object Home : BottomNavItem("Home", Icons.Default.Home, "home")
-    object MyEvents : BottomNavItem("My Events", Icons.Default.CalendarViewDay, "my_events")
-    object Memories : BottomNavItem("Memories", Icons.Default.Memory, "memories")
-    object Analytics : BottomNavItem("Analytics", Icons.Default.Analytics, "analytics")
+    object Home : BottomNavItem("Home", Icons.Default.Home, Screen.HomeScreen)
+    object MyEvents : BottomNavItem("My Events", Icons.Default.CalendarViewDay, Screen.MyEventsScreen)
+    object Memories : BottomNavItem("Memories", Icons.Default.Memory, Screen.MemoriesScreen)
+    object Analytics : BottomNavItem("Analytics", Icons.Default.Analytics, Screen.AnalyticsScreen)
 }
