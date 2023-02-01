@@ -9,41 +9,53 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun FutureEventsColumn(
-    modifier: Modifier = Modifier
+    modifier: Modifier,
+    onClickFutureEventElement: () -> Unit,
+    onClickViewAllButton: () -> Unit
 ) {
     Column(
         modifier = modifier
     ) {
-        SectionHeading(contentTitle = "This week")
+        SectionHeading(
+            modifier = modifier,
+            contentTitle = "This week",
+            onClick = onClickViewAllButton
+        )
         FutureEventElement(
+            modifier = modifier,
             Event(
                 id = 0,
                 imagesList[0],
                 "28.12.2022 20:30:00",
                 title = "Music concert",
                 eventType = EventType.LIVE
-            )
+            ),
+            onClickEvent = onClickFutureEventElement
         )
-        Spacer(Modifier.height(16.dp))
+        Spacer(modifier.height(16.dp))
         FutureEventElement(
+            modifier = modifier,
             Event(
                 id = 1,
                 imagesList[1],
                 "28.12.2022 20:30:00",
                 title = "Wedding",
                 eventType = EventType.LIVE
-            )
+            ),
+            onClickEvent = onClickFutureEventElement
         )
-        Spacer(Modifier.height(16.dp))
+        Spacer(modifier.height(16.dp))
         FutureEventElement(
+            modifier = modifier,
             Event(
                 id = 2,
                 imagesList[2],
                 "28.12.2022 20:30:00",
                 title = "Rooftop party",
                 eventType = EventType.ONLINE
-            )
+            ),
+            onClickEvent = onClickFutureEventElement
         )
-        Spacer(Modifier.height(16.dp))
+        Spacer(modifier.height(16.dp))
     }
 }

@@ -24,12 +24,13 @@ import com.example.eventi.ui.theme.Blue
 
 @Composable
 fun FutureEventElement(
+    modifier: Modifier,
     event: Event,
-    modifier: Modifier = Modifier
+    onClickEvent: () -> Unit
 ) {
     Surface(
         modifier = modifier
-            .clickable {  },
+            .clickable(onClick = onClickEvent),
         shape = MaterialTheme.shapes.medium
     ) {
         Row(
@@ -59,33 +60,7 @@ fun FutureEventElement(
                 )
                 Spacer(Modifier.height(6.dp))
                 Row {
-                    if (event.eventType == EventType.LIVE) {
-                        Icon(
-                            Icons.Default.NearMe,
-                            contentDescription = null,
-                            tint = Color.Gray
-                        )
-                        Spacer(
-                            Modifier.width(6.dp)
-                        )
-                        Text(
-                            text = "Live event",
-                            color = Color.Gray
-                        )
-                    } else {
-                        Icon(
-                            Icons.Default.Videocam,
-                            contentDescription = null,
-                            tint = Color.Gray
-                        )
-                        Spacer(
-                            Modifier.width(6.dp)
-                        )
-                        Text(
-                            text = "Online event",
-                            color = Color.Gray
-                        )
-                    }
+                    EventTypeInfoRow(eventType = event.eventType)
                 }
             }
             IconButton(
@@ -100,5 +75,38 @@ fun FutureEventElement(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun EventTypeInfoRow(
+    eventType: EventType
+){
+    if (eventType == EventType.LIVE) {
+        Icon(
+            Icons.Default.NearMe,
+            contentDescription = null,
+            tint = Color.Gray
+        )
+        Spacer(
+            Modifier.width(6.dp)
+        )
+        Text(
+            text = "Live event",
+            color = Color.Gray
+        )
+    } else {
+        Icon(
+            Icons.Default.Videocam,
+            contentDescription = null,
+            tint = Color.Gray
+        )
+        Spacer(
+            Modifier.width(6.dp)
+        )
+        Text(
+            text = "Online event",
+            color = Color.Gray
+        )
     }
 }

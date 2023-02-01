@@ -16,7 +16,8 @@ import com.example.eventi.ui.theme.OrangeLightest
 
 @Composable
 fun Header(
-    modifier: Modifier = Modifier
+    modifier: Modifier,
+    onClickChangeLocation: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -48,9 +49,9 @@ fun Header(
                             style = MaterialTheme.typography.h4
                         )
                     }
-                    // da se narpavi na edin buton
+                    // TODO: make those widgets into one
                     IconButton(
-                        onClick = { /*TODO*/ }
+                        onClick = onClickChangeLocation
                     ) {
                         Icon(
                             Icons.Default.NearMe,
@@ -59,7 +60,7 @@ fun Header(
                         )
                     }
                     TextButton(
-                        onClick = {}
+                        onClick = onClickChangeLocation
                     ) {
                         Text(
                             text = "change location",
@@ -71,6 +72,8 @@ fun Header(
                 }
             }
         }
-        SearchBar()
+        SearchBar(
+            modifier = modifier
+        )
     }
 }

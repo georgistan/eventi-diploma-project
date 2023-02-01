@@ -17,7 +17,7 @@ import com.example.eventi.ui.theme.PrimaryOrange
 
 @Composable
 fun SearchBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier
 ){
     OutlinedTextField(
         value = "",
