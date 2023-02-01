@@ -27,14 +27,15 @@ import com.example.eventi.ui.theme.PrimaryOrange
 
 @Composable
 fun EventCard(
+    modifier: Modifier,
     event: Event,
-    modifier: Modifier = Modifier
+    onClickCard: () -> Unit
 ) {
     Row {
         Card(
             modifier = modifier
                 .shadow(elevation = 4.dp)
-                .clickable { print("Card clicked!") }
+                .clickable(onClick = onClickCard)
                 .height(240.dp)
                 .width(290.dp),
             colors = CardDefaults.cardColors(
@@ -101,8 +102,7 @@ fun EventTypeRow(
     eventType: EventType
 ){
     if (eventType == EventType.LIVE){
-        return Row(
-        ) {
+        return Row {
             Icon(
                 Icons.Default.LocationOn,
                 contentDescription = null

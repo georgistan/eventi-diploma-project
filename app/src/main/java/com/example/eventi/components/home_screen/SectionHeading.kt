@@ -13,8 +13,9 @@ import com.example.eventi.ui.theme.Blue
 
 @Composable
 fun SectionHeading(
+    modifier: Modifier,
     contentTitle: String,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit
 ) {
     Row(
         modifier = modifier
@@ -27,7 +28,9 @@ fun SectionHeading(
                 fontSize = 20.sp
             )
         )
-        TextButton(onClick = { /*TODO*/ }) {
+        TextButton(
+            onClick = onClick
+        ) {
             Text(
                 "View all",
                 color = Blue
