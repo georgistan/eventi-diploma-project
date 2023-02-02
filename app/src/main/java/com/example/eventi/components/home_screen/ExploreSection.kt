@@ -1,13 +1,18 @@
 package com.example.eventi.components.home_screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Air
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.example.eventi.interestsData
 
 @Composable
@@ -19,24 +24,47 @@ fun ExploreSection(
     Column(
         modifier = modifier
     ) {
-        SectionHeading(
-            modifier = modifier,
-            contentTitle = "Explore others",
-            onClick = onClickViewAllButton
-        )
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
-        ) {
-            items(
-                interestsData.take(6)
-            ) { item ->
-                ExploreItem(
-                    modifier = modifier,
-                    contentTitle = item,
-                    contentIcon = Icons.Default.Air,
-                    onClick = onClickExploreItem
-                )
-            }
+        SectionHeading(modifier = modifier, contentTitle = "Explore others", onClick = onClickViewAllButton)
+        Row {
+            ExploreItem(
+                modifier = modifier,
+                contentTitle = "Education & Family",
+                Icons.Outlined.FamilyRestroom,
+                onClick = onClickExploreItem
+            )
+            ExploreItem(
+                modifier = modifier,
+                contentTitle = "Science",
+                Icons.Outlined.Science,
+                onClick = onClickExploreItem
+            )
+            ExploreItem(
+                modifier = modifier,
+                contentTitle = "Business",
+                Icons.Outlined.Business,
+                onClick = onClickExploreItem
+            )
+        }
+        Spacer(modifier.height(16.dp))
+        Row {
+            ExploreItem(
+                modifier = modifier,
+                contentTitle = "Fast food",
+                Icons.Outlined.Fastfood,
+                onClick = onClickExploreItem
+            )
+            ExploreItem(
+                modifier = modifier,
+                contentTitle = "Film & Media",
+                Icons.Outlined.MovieCreation,
+                onClick = onClickExploreItem
+            )
+            ExploreItem(
+                modifier = modifier,
+                contentTitle = "Casino",
+                Icons.Outlined.Casino,
+                onClick = onClickExploreItem
+            )
         }
     }
 }
