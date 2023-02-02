@@ -16,10 +16,10 @@ fun BottomNavigation(
     navController: NavController
 ) {
     val items = listOf(
-        BottomNavItem.Home,
-        BottomNavItem.MyEvents,
-        BottomNavItem.Memories,
-        BottomNavItem.Analytics
+        Home,
+        MyEvents,
+        Memories,
+        Analytics
     )
 
     androidx.compose.material.BottomNavigation(
