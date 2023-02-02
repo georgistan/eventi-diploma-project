@@ -48,7 +48,10 @@ fun Navigation(
             val eventInfo =
                 navBackStackEntry.arguments?.getString(SingleEventScreen.eventInfoArg)
 
-            SingleEventScreen(eventInfo)
+            SingleEventScreen(
+                eventInfo = eventInfo,
+                navController = navController
+            )
         }
     }
 }
