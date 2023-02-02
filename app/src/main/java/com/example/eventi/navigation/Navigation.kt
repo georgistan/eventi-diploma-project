@@ -26,20 +26,29 @@ fun Navigation(
                 navController = navController
             )
         }
-        composable(BottomNavItem.MyEvents.screen.route) {
+        composable(MyEvents.screen.route) {
             MyEventsScreen(
                 navController = navController
             )
         }
-        composable(BottomNavItem.Memories.screen.route) {
+        composable(Memories.screen.route) {
             MemoriesScreen(
                 navController = navController
             )
         }
-        composable(BottomNavItem.Analytics.screen.route) {
+        composable(Analytics.screen.route) {
             AnalyticsScreen(
                 navController = navController
             )
+        }
+        composable(
+            route = SingleEventScreen.routeWithArgs,
+            arguments = SingleEventScreen.arguments
+        ){ navBackStackEntry ->
+            val eventInfo =
+                navBackStackEntry.arguments?.getString(SingleEventScreen.eventInfoArg)
+
+            SingleEventScreen(eventInfo)
         }
     }
 }
