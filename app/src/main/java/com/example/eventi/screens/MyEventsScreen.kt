@@ -16,6 +16,7 @@ import com.example.eventi.components.home_screen.Event
 import com.example.eventi.components.home_screen.EventCard
 import com.example.eventi.components.home_screen.EventType
 import com.example.eventi.components.home_screen.imagesList
+import com.example.eventi.components.my_events_screen.MyEventsContent
 import com.example.eventi.navigation.BottomNavigation
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,35 +35,11 @@ fun MyEventsScreen(
             )
         }
     ) {
-        LazyColumn {
-            item {
-                Row(
-                    modifier = modifier
-                        .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
-                ) {
-                    Text(
-                        text = stringResource(R.string.my_events),
-                        style = TextStyle(
-                            fontSize = 20.sp
-                        )
-                    )
-                }
+        MyEventsContent(
+            modifier = modifier,
+            onClickEventCard = {
+
             }
-            item { Divider() }
-            item { Spacer(Modifier.height(16.dp)) }
-            item {
-                Column(
-                    modifier = modifier
-                        .padding(start = 16.dp, end = 16.dp)
-                ) {
-                    EventCard(Event(0, imagesList[0], "28.12.2022 20:30", "Music Concert", EventType.LIVE))
-                    Spacer(Modifier.height(16.dp))
-                    EventCard(Event(1, imagesList[1], "28.12.2022 20:30", "Wedding", EventType.LIVE))
-                    Spacer(Modifier.height(16.dp))
-                    EventCard(Event(2, imagesList[2], "28.12.2022 20:30", "Rooftop Party", EventType.ONLINE))
-                    Spacer(Modifier.height(16.dp))
-                }
-            }
-        }
+        )
     }
 }
