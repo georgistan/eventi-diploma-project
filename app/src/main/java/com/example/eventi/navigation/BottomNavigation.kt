@@ -44,9 +44,9 @@ fun BottomNavigation(
                 selectedContentColor = Color.Black,
                 unselectedContentColor = Color.Black.copy(0.4f),
                 alwaysShowLabel = true,
-                selected = currentRoute == item.screen.route,
+                selected = item.screens.firstOrNull { it.route == currentRoute } != null,
                 onClick = {
-                    navController.navigate(item.screen.route) {
+                    navController.navigate( item.screens.first().route ) {
 
                         navController.graph.startDestinationRoute?.let { screen_route ->
                             popUpTo(screen_route) {
@@ -61,3 +61,4 @@ fun BottomNavigation(
         }
     }
 }
+

@@ -38,7 +38,7 @@ fun MyEventsScreen(
         MyEventsContent(
             modifier = modifier,
             onClickEventCard = {
-
+                navController.
             }
         )
     }

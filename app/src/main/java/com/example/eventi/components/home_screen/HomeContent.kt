@@ -13,9 +13,9 @@ import androidx.compose.ui.unit.dp
 fun HomeContent(
     modifier: Modifier,
     onClickChangeLocation: () -> Unit,
-    onClickEventCard: () -> Unit,
+    onClickEventCard: (Event) -> Unit,
     onClickViewAllEvents: () -> Unit,
-    onClickFutureEventCard: () -> Unit,
+    onClickFutureEventCard: (Event) -> Unit,
     onClickViewAllFutureEvents: () -> Unit,
     onClickExploreItem: () -> Unit,
     onClickViewAllExploreCategories: () -> Unit

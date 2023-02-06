@@ -1,5 +1,6 @@
 package com.example.eventi.components.home_screen
 
+import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -24,18 +25,21 @@ import androidx.compose.ui.unit.dp
 import com.example.eventi.R
 import com.example.eventi.ui.theme.Blue
 import com.example.eventi.ui.theme.PrimaryOrange
+import com.google.gson.Gson
 
 @Composable
 fun EventCard(
     modifier: Modifier,
     event: Event,
-    onClickCard: () -> Unit
+    onClickCard: (Event) -> Unit
 ) {
     Row {
         Card(
             modifier = modifier
                 .shadow(elevation = 4.dp)
-                .clickable(onClick = onClickCard)
+                .clickable {
+                    onClickCard(event)
+                }
                 .height(240.dp)
                 .width(290.dp),
             colors = CardDefaults.cardColors(
@@ -83,7 +87,10 @@ data class Event(
     val date: String,
     val title: String,
     val eventType: EventType
-)
+
+){
+    override fun toString(): String = Uri.encode(Gson().toJson(this))
+}
 
 enum class EventType {
     ONLINE,
@@ -102,7 +109,7 @@ fun EventTypeRow(
     eventType: EventType
 ){
     if (eventType == EventType.LIVE){
-        return Row {
+        Row {
             Icon(
                 Icons.Default.LocationOn,
                 contentDescription = null
@@ -123,7 +130,7 @@ fun EventTypeRow(
             }
         }
     } else {
-        return Row {
+        Row {
             Icon(
                 Icons.Default.AccountBox,
                 contentDescription = null,

@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun FutureEventsColumn(
     modifier: Modifier,
-    onClickFutureEventElement: () -> Unit,
+    onClickFutureEventElement: (Event) -> Unit,
     onClickViewAllButton: () -> Unit
 ) {
     Column(

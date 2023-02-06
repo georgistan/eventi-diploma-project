@@ -4,7 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
+import com.example.eventi.components.home_screen.Event
 import com.example.eventi.screens.*
+import com.google.gson.Gson
 
 @Composable
 fun Navigation(
@@ -26,30 +29,35 @@ fun Navigation(
                 navController = navController
             )
         }
-        composable(MyEvents.screen.route) {
+        composable(route = Screen.MyEventsScreen.route) {
             MyEventsScreen(
                 navController = navController
             )
         }
-        composable(Memories.screen.route) {
+        composable(route = Screen.MemoriesScreen.route) {
             MemoriesScreen(
                 navController = navController
             )
         }
-        composable(Analytics.screen.route) {
+        composable(route = Screen.AnalyticsScreen.route) {
             AnalyticsScreen(
                 navController = navController
             )
         }
         composable(
-            route = SingleEventScreen.routeWithArgs,
-            arguments = SingleEventScreen.arguments
-        ){ navBackStackEntry ->
-            val eventInfo =
-                navBackStackEntry.arguments?.getString(SingleEventScreen.eventInfoArg)
+            route = "${Screen.SingleEventScreen.route}/{event}",
+            arguments = listOf(
+                navArgument("event") {
+                    type = EventArgType()
+                }
+            )
+        ) { navBackStackEntry ->
+            val event = navBackStackEntry.arguments
+                ?.getString("event")
+                ?.let { Gson().fromJson(it, Event::class.java) }
 
             SingleEventScreen(
-                eventInfo = eventInfo,
+                event = event,
                 navController = navController
             )
         }

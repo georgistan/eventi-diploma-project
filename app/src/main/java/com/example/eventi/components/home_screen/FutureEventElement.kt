@@ -26,11 +26,11 @@ import com.example.eventi.ui.theme.Blue
 fun FutureEventElement(
     modifier: Modifier,
     event: Event,
-    onClickEvent: () -> Unit
+    onClickEvent: (Event) -> Unit
 ) {
     Surface(
         modifier = modifier
-            .clickable(onClick = onClickEvent),
+            .clickable { onClickEvent(event) },
         shape = MaterialTheme.shapes.medium
     ) {
         Row(

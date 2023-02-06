@@ -9,6 +9,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.eventi.components.home_screen.*
 import com.example.eventi.navigation.BottomNavigation
+import com.example.eventi.navigation.Screen
+import com.example.eventi.navigation.navigateSingleTopTo
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,14 +32,14 @@ fun HomeScreen(
             onClickChangeLocation = {
 
             },
-            onClickEventCard = {
-
+            onClickEventCard = { event ->
+                navController.navigateToSingleEvent(event)
             },
             onClickViewAllEvents = {
 
             },
-            onClickFutureEventCard = {
-
+            onClickFutureEventCard = { event ->
+                navController.navigateToSingleEvent(event)
             },
             onClickViewAllFutureEvents = {
 
@@ -50,4 +52,8 @@ fun HomeScreen(
             },
         )
     }
+}
+
+private fun NavHostController.navigateToSingleEvent(event: Event) {
+    this.navigateSingleTopTo("${Screen.SingleEventScreen.route}/${event}")
 }
