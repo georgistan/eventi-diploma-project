@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun EventsRow(
     modifier: Modifier,
-    onClickEventCard: () -> Unit,
+    onClickEventCard: (Event) -> Unit,
     onCLickViewAllButton: () -> Unit
 ) {
     Column(

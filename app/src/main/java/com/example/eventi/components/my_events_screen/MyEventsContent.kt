@@ -19,7 +19,7 @@ import com.example.eventi.components.home_screen.imagesList
 @Composable
 fun MyEventsContent(
     modifier: Modifier,
-    onClickEventCard: () -> Unit
+    onClickEventCard: (Event) -> Unit
 ) {
     LazyColumn {
         item {

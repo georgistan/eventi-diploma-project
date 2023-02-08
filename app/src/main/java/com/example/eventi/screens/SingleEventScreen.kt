@@ -6,6 +6,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import com.example.eventi.components.home_screen.Event
 import com.example.eventi.components.single_event_screen.SingleEventContent
 import com.example.eventi.navigation.BottomNavigation
 
@@ -13,7 +14,7 @@ import com.example.eventi.navigation.BottomNavigation
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SingleEventScreen(
-    eventInfo: String?,
+    event: Event?,
     navController: NavController,
     modifier: Modifier = Modifier
 ) {
@@ -26,7 +27,8 @@ fun SingleEventScreen(
         }
     ) {
         SingleEventContent(
-            modifier = modifier
+            modifier = modifier,
+            event = event
         )
     }
 }
