@@ -19,8 +19,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.eventi.ui.theme.Blue
+import com.example.eventi.ui.theme.PrimaryBlue
+import com.example.eventi.R
 
 @Composable
 fun FutureEventElement(
@@ -70,7 +72,7 @@ fun FutureEventElement(
                 Icon(
                     Icons.Outlined.Bookmark,
                     contentDescription = "Save event",
-                    tint = Blue,
+                    tint = PrimaryBlue,
                     modifier = modifier
                 )
             }
@@ -92,7 +94,7 @@ fun EventTypeInfoRow(
             Modifier.width(6.dp)
         )
         Text(
-            text = "Live event",
+            text = stringResource(R.string.live_event),
             color = Color.Gray
         )
     } else {
@@ -105,7 +107,7 @@ fun EventTypeInfoRow(
             Modifier.width(6.dp)
         )
         Text(
-            text = "Online event",
+            text = stringResource(R.string.online_event),
             color = Color.Gray
         )
     }

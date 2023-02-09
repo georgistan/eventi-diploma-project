@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.example.eventi.navigation.Screen
+import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
 
 @Composable
@@ -27,7 +28,7 @@ fun DoneButton(
     ) {
         Text(
             text = "Done",
-            style = MaterialTheme.typography.subtitle1,
+            style = EventiTypography.subtitle1,
             color = Color.White
         )
     }

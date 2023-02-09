@@ -8,6 +8,13 @@
     <string name="online_event">Online event</string>
     <string name="live_event">Live event</string>
 
+    <!-- Home -->
+    <string name="find_events_near">find events near</string>
+    <string name="change_location">change location</string>
+    <string name="we_suggest_you">We suggest you</string>
+    <string name="this_week">This week</string>
+    <string name="explore_others">Explore others</string>
+
     <!-- My Events -->
     <string name="my_events">My events</string>
 </resources>
