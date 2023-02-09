@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.eventi.R
 
 @Composable
 fun EventsRow(
@@ -18,7 +20,7 @@ fun EventsRow(
     ) {
         SectionHeading(
             modifier = modifier,
-            contentTitle = "We suggest you",
+            contentTitle = stringResource(R.string.we_suggest_you),
             onClick = onCLickViewAllButton
         )
         LazyRow(

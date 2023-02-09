@@ -5,6 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.example.eventi.ui.theme.EventiTypography
 
 @Composable
 fun Header(
@@ -15,11 +16,11 @@ fun Header(
     ) {
         Text(
             text = "Your interests",
-            style = MaterialTheme.typography.h5
+            style = EventiTypography.h2
         )
         Text(
             text = "Pick your favorite interest to find events related to you",
-            style = MaterialTheme.typography.subtitle2
+            style = EventiTypography.subtitle1
         )
     }
 }

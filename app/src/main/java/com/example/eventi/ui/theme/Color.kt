@@ -11,4 +11,8 @@ val PrimaryOrange = Color(0xFFFFA500)
 val OrangeLight = Color(0xFFFFCE8C)
 val OrangeLightest = Color(0xFFFFF4E6)
 
-val Blue = Color(0xFF004894)
+val PrimaryBlue = Color(0xFF004894)
+val SecondaryBlue = PrimaryBlue.copy(0.7f)
+
+val PrimaryGray = Color(0xFF3A3F43)
+val SecondaryGray = Color(0xFF8B959F)

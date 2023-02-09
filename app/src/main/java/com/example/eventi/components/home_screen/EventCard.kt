@@ -23,7 +23,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.eventi.R
-import com.example.eventi.ui.theme.Blue
+import com.example.eventi.ui.theme.EventiTypography
+import com.example.eventi.ui.theme.PrimaryBlue
 import com.example.eventi.ui.theme.PrimaryOrange
 import com.google.gson.Gson
 
@@ -64,12 +65,14 @@ fun EventCard(
                     Column {
                         Text(
                             text = event.date,
-                            color = Color.Gray
+                            color = Color.Gray,
+                            style = EventiTypography.subtitle2
                         )
                         Spacer(Modifier.height(8.dp))
                         Text(
                             text = event.title,
-                            color = PrimaryOrange
+                            color = PrimaryOrange,
+                            style = EventiTypography.body1
                         )
                     }
                     Spacer(Modifier.height(8.dp))
@@ -116,7 +119,8 @@ fun EventTypeRow(
             )
             Text(
                 text = stringResource(R.string.online_event),
-                modifier.paddingFromBaseline(top = 20.dp)
+                modifier.paddingFromBaseline(top = 20.dp),
+                style = EventiTypography.subtitle2
             )
             Spacer(modifier = modifier.weight(2f))
             IconButton(
@@ -125,7 +129,7 @@ fun EventTypeRow(
                 Icon(
                     Icons.Outlined.Bookmark,
                     contentDescription = null,
-                    tint = Blue
+                    tint = PrimaryBlue
                 )
             }
         }
@@ -138,7 +142,8 @@ fun EventTypeRow(
             )
             Text(
                 text = stringResource(R.string.live_event),
-                modifier.paddingFromBaseline(top = 20.dp)
+                modifier.paddingFromBaseline(top = 20.dp),
+                style = EventiTypography.subtitle2
             )
             Spacer(modifier = modifier.weight(2f))
             IconButton(
@@ -147,7 +152,7 @@ fun EventTypeRow(
                 Icon(
                     Icons.Outlined.Bookmark,
                     contentDescription = null,
-                    tint = Blue
+                    tint = PrimaryBlue
                 )
             }
         }

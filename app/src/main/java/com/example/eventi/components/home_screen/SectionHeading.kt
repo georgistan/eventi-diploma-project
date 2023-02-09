@@ -9,7 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.eventi.ui.theme.Blue
+import com.example.eventi.ui.theme.EventiTypography
+import com.example.eventi.ui.theme.PrimaryBlue
 
 @Composable
 fun SectionHeading(
@@ -24,16 +25,15 @@ fun SectionHeading(
         Text(
             modifier = modifier.weight(1f),
             text = contentTitle,
-            style = TextStyle(
-                fontSize = 20.sp
-            )
+            style = EventiTypography.h2
         )
         TextButton(
             onClick = onClick
         ) {
             Text(
-                "View all",
-                color = Blue
+                text = "View all",
+                color = PrimaryBlue,
+                style = EventiTypography.subtitle1
             )
         }
     }

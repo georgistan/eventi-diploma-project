@@ -17,7 +17,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.eventi.ui.theme.Blue
+import com.example.eventi.ui.theme.EventiTypography
+import com.example.eventi.ui.theme.PrimaryBlue
+import com.example.eventi.ui.theme.SecondaryBlue
 
 @Composable
 fun ExploreItem(
@@ -44,8 +46,12 @@ fun ExploreItem(
                 modifier = modifier
                     .widthIn(72.dp)
                     .heightIn(40.dp),
-                color = Blue,
-                shape = RoundedCornerShape(10.dp)
+                color = PrimaryBlue,
+                shape = RoundedCornerShape(10.dp),
+                border = BorderStroke(
+                    width = 2.dp,
+                    color = SecondaryBlue
+                )
             ) {
                 Icon(
                     contentIcon,
@@ -61,9 +67,7 @@ fun ExploreItem(
                 overflow = TextOverflow.Clip,
                 maxLines = 2,
                 textAlign = TextAlign.Center,
-                style = TextStyle(
-                    fontSize = 12.sp
-                )
+                style = EventiTypography.subtitle2
             )
         }
     }

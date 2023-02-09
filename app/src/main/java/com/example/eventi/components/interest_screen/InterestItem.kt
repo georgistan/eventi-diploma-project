@@ -9,6 +9,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.sp
+import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,9 +26,7 @@ fun InterestItem(
             Text(
                 text = content,
                 color = if (selected) Color.White else Color.Gray,
-                style = TextStyle(
-                    fontSize = 14.sp
-                )
+                style = EventiTypography.subtitle1
             )
         },
         trailingIcon = {

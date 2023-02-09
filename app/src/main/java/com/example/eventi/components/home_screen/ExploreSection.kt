@@ -12,7 +12,9 @@ import androidx.compose.material.icons.filled.Air
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.eventi.R
 import com.example.eventi.interestsData
 
 @Composable
@@ -24,7 +26,11 @@ fun ExploreSection(
     Column(
         modifier = modifier
     ) {
-        SectionHeading(modifier = modifier, contentTitle = "Explore others", onClick = onClickViewAllButton)
+        SectionHeading(
+            modifier = modifier,
+            contentTitle = stringResource(R.string.explore_others),
+            onClick = onClickViewAllButton
+        )
         Row {
             ExploreItem(
                 modifier = modifier,

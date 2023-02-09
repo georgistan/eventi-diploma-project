@@ -8,11 +8,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.NearMe
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.eventi.ui.theme.Blue
+import com.example.eventi.R
+import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.OrangeLight
 import com.example.eventi.ui.theme.OrangeLightest
+import com.example.eventi.ui.theme.PrimaryBlue
 
 @Composable
 fun Header(
@@ -35,7 +38,8 @@ fun Header(
                     .padding(top = 10.dp, start = 16.dp, end = 16.dp, bottom = 10.dp)
             ) {
                 Text(
-                    text = "find event near"
+                    text = stringResource(R.string.find_events_near),
+                    style = EventiTypography.subtitle2
                 )
                 Row(
                     modifier = modifier
@@ -46,7 +50,7 @@ fun Header(
                     ) {
                         Text(
                             text = "Sofia",
-                            style = MaterialTheme.typography.h4
+                            style = EventiTypography.h1
                         )
                     }
                     // TODO: make those widgets into one
@@ -56,15 +60,16 @@ fun Header(
                         Icon(
                             Icons.Default.NearMe,
                             contentDescription = null,
-                            tint = Blue
+                            tint = PrimaryBlue
                         )
                     }
                     TextButton(
                         onClick = onClickChangeLocation
                     ) {
                         Text(
-                            text = "change location",
-                            color = Blue,
+                            text = stringResource(R.string.change_location),
+                            style = EventiTypography.subtitle2,
+                            color = PrimaryBlue,
                             letterSpacing = 0.sp
                         )
                     }
