@@ -14,8 +14,18 @@ fun Navigation(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.InterestsScreen.route
+        startDestination = Screen.SplashScreen.route
     ) {
+        composable(route = Screen.SplashScreen.route) {
+            AnimatedSplashScreen(
+                popSplashScreen = {
+                    navController.popBackStack()
+                },
+                navigateToNextScreen = {
+                    navController.navigateSingleTopTo(Screen.InterestsScreen.route)
+                }
+            )
+        }
         composable(route = Screen.InterestsScreen.route) {
             InterestsScreen(
                 onClickDoneButton = {
