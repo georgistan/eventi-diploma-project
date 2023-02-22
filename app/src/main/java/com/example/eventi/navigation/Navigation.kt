@@ -2,12 +2,11 @@ package com.example.eventi.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.eventi.components.home_screen.Event
-import com.example.eventi.screens.*
-import com.google.gson.Gson
+import com.example.eventi.ui.theme.screens.*
 
 @Composable
 fun Navigation(
@@ -48,16 +47,16 @@ fun Navigation(
             route = "${Screen.SingleEventScreen.route}/{event}",
             arguments = listOf(
                 navArgument("event") {
-                    type = EventArgType()
+                    type = NavType.LongType
                 }
             )
         ) { navBackStackEntry ->
-            val event = navBackStackEntry.arguments
-                ?.getString("event")
-                ?.let { Gson().fromJson(it, Event::class.java) }
+            val eventId = navBackStackEntry.arguments
+                ?.getString("eventId")
+                ?.toLong()
 
             SingleEventScreen(
-                event = event,
+                eventId = eventId,
                 navController = navController
             )
         }
