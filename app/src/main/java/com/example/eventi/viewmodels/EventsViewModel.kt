@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.eventi.data.network.events.EventApi
 import com.example.eventi.data.network.events.EventApiStatus
-import com.example.eventi.data.network.events.EventResponse
 import com.example.eventi.di.DefaultDispatcher
 import com.example.eventi.repository.events.Event
 import com.example.eventi.repository.events.EventRepositoryImpl

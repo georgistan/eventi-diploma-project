@@ -4,14 +4,9 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material.icons.outlined.Bookmark
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,9 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.eventi.ui.theme.PrimaryBlue
 import com.example.eventi.R
 import com.example.eventi.repository.events.Event
 
@@ -62,54 +55,8 @@ fun FutureEventElement(
                     text = event.title,
                 )
                 Spacer(Modifier.height(6.dp))
-//                Row {
-//                    EventTypeInfoRow(eventType = event.eventType)
-//                }
             }
-//            IconButton(
-//                modifier = modifier.weight(2f),
-//                onClick = {}
-//            ) {
-//                Icon(
-//                    Icons.Outlined.Bookmark,
-//                    contentDescription = "Save event",
-//                    tint = PrimaryBlue,
-//                    modifier = modifier
-//                )
-//            }
+            Spacer(modifier = modifier.width(16.dp))
         }
     }
 }
-
-//@Composable
-//fun EventTypeInfoRow(
-//    eventType: EventType
-//){
-//    if (eventType == EventType.LIVE) {
-//        Icon(
-//            Icons.Default.NearMe,
-//            contentDescription = null,
-//            tint = Color.Gray
-//        )
-//        Spacer(
-//            Modifier.width(6.dp)
-//        )
-//        Text(
-//            text = stringResource(R.string.live_event),
-//            color = Color.Gray
-//        )
-//    } else {
-//        Icon(
-//            Icons.Default.Videocam,
-//            contentDescription = null,
-//            tint = Color.Gray
-//        )
-//        Spacer(
-//            Modifier.width(6.dp)
-//        )
-//        Text(
-//            text = stringResource(R.string.online_event),
-//            color = Color.Gray
-//        )
-//    }
-//}

@@ -50,7 +50,8 @@ fun HomeContent(
             FutureEventsColumn(
                 modifier = modifier,
                 onClickFutureEventElement = onClickFutureEventCard,
-                onClickViewAllButton = onClickViewAllFutureEvents
+                onClickViewAllButton = onClickViewAllFutureEvents,
+                events = events
             )
         }
         item {
