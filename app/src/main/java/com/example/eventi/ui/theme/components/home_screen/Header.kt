@@ -77,8 +77,5 @@ fun Header(
                 }
             }
         }
-        SearchBar(
-            modifier = modifier
-        )
     }
 }
