@@ -13,11 +13,11 @@ import javax.inject.Qualifier
 object DispatchersModule {
 
     @Provides
-    @DefaultDispatcher
-    fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.Default
+    @DispatcherIO
+    fun provideDefaultDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
 }
 
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
-annotation class DefaultDispatcher
+annotation class DispatcherIO

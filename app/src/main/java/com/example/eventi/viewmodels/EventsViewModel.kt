@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventi.data.network.events.EventApiStatus
-import com.example.eventi.di.DefaultDispatcher
+import com.example.eventi.di.DispatcherIO
 import com.example.eventi.repository.events.Event
 import com.example.eventi.repository.events.EventRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class EventsViewModel @Inject constructor(
     private val repository: EventRepositoryImpl,
-    @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher
+    @DispatcherIO private val dispatcherIO: CoroutineDispatcher
 ) : ViewModel() {
     private val _events = MutableStateFlow<List<Event>>(emptyList())
     val events: StateFlow<List<Event>>
@@ -36,7 +36,7 @@ class EventsViewModel @Inject constructor(
         viewModelScope.launch {
             _status.value = EventApiStatus.LOADING
             try {
-                val newEvents = withContext(defaultDispatcher) {
+                val newEvents = withContext(dispatcherIO) {
                     repository.getEvents()
                 }
                 _events.value = newEvents
