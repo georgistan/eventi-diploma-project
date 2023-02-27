@@ -9,13 +9,17 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.Color
 import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
+import com.example.eventi.viewmodels.InterestsViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InterestItem(
-    content: String
+    content: String,
+//    viewModel: InterestsViewModel = viewModel()
 ) {
     var selected by rememberSaveable { mutableStateOf(false) }
+//    var interestsList by viewModel.interests.collectAsState()
 
     InputChip(
         selected = selected,

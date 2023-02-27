@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_package = "com.example.eventi";
+option java_multiple_files = true;
+
+message Interest {
+    string content = 1;
+}
+
+message RecentInterests {
+    repeated Interest interest = 1;
+}
