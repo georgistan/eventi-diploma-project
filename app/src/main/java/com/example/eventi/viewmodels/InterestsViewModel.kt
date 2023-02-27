@@ -2,32 +2,37 @@ package com.example.eventi.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.eventi.Interest
+import com.example.eventi.repository.interests.Interest
 import com.example.eventi.repository.interests.LocalStorageRepository
+import com.example.eventi.repository.interests.LocalStorageRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProtoViewModel @Inject constructor(
-    private val localStorageRepository: LocalStorageRepository
+class InterestsViewModel @Inject constructor(
+    private val localStorageRepositoryImpl: LocalStorageRepositoryImpl
 ) : ViewModel() {
-    private lateinit var _recentInterests: LiveData<List<Interest>>
-    val recentInterests: LiveData<List<Interest>> = _recentInterests
+    private val _recentInterests = MutableStateFlow<List<Interest>>(emptyList())
+    val recentInterests: StateFlow<List<Interest>>
+        get() = _recentInterests
 
     init {
         getAllRecentInterests()
     }
 
     private fun getAllRecentInterests() = viewModelScope.launch {
-        _recentInterests = localStorageRepository.getRecentInterests()
+         localStorageRepositoryImpl.getRecentInterests().onEach {
+             _recentInterests.value = it
+         }.collect()
     }
 
     fun addRecentInterests(Interests:List<Interest>) = viewModelScope.launch {
-        localStorageRepository.addRecentInterests(Interests)
+        localStorageRepositoryImpl.addRecentInterests(Interests)
     }
 
     fun clearRecentInterests() = viewModelScope.launch {
-        localStorageRepository.clearAllRecentInterests()
+        localStorageRepositoryImpl.clearAllRecentInterests()
     }
 }

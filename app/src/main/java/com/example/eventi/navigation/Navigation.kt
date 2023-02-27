@@ -1,7 +1,6 @@
 package com.example.eventi.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.datastore.core.DataStore
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
