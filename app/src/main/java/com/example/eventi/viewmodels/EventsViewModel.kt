@@ -47,4 +47,8 @@ class EventsViewModel @Inject constructor(
             }
         }
     }
+
+    fun getEvent(eventId: String): Event? {
+        return events.value.find { it.id == eventId }
+    }
 }

@@ -2,11 +2,12 @@ package com.example.eventi.repository.events
 
 // domain model
 data class Event(
-    var title: String,
-    var description: String,
-    var category: String,
-    var startsAt: String,
-    var predictedEnd: String,
-    var rank: Int
+    val id: String,
+    val title: String,
+    val description: String,
+    val category: String,
+    val startsAt: String,
+    val predictedEnd: String,
+    val rank: Int
     // and so on..
 )

@@ -1,13 +1,17 @@
 package com.example.eventi.navigation
 
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.eventi.ui.theme.DarkIconOrange
+import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.OrangeLight
 import com.example.eventi.ui.theme.OrangeLightest
 
@@ -23,8 +27,7 @@ fun BottomNavigation(
     )
 
     androidx.compose.material.BottomNavigation(
-        backgroundColor = OrangeLightest,
-        contentColor = OrangeLight
+        backgroundColor = OrangeLightest
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -32,17 +35,20 @@ fun BottomNavigation(
         items.forEach { item ->
             BottomNavigationItem(
                 icon = {
-                    item.icon
-                    item.title
+                    Icon(
+                        imageVector = item.icon,
+                        contentDescription = item.title,
+                        tint = DarkIconOrange
+                    )
                 },
                 label = {
                     Text(
                         text = item.title,
-                        fontSize = 9.sp
+                        style = EventiTypography.subtitle2.copy(color = DarkIconOrange, fontSize = 10.sp)
                     )
                 },
                 selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black.copy(0.4f),
+                unselectedContentColor = Color.Black,
                 alwaysShowLabel = true,
                 selected = item.screens.firstOrNull { it.route == currentRoute } != null,
                 onClick = {

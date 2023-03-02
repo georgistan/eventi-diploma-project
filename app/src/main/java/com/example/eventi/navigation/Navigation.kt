@@ -1,17 +1,20 @@
 package com.example.eventi.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.eventi.ui.theme.screens.*
+import com.example.eventi.repository.interests.Interest
+import com.example.eventi.ui.app.screens.*
 
 @Composable
 fun Navigation(
     navController: NavHostController
 ) {
+    val databaseInterestsList = listOf(Interest(0, "Joro"))
     NavHost(
         navController = navController,
         startDestination = Screen.SplashScreen.route
@@ -22,7 +25,11 @@ fun Navigation(
                     navController.popBackStack()
                 },
                 navigateToNextScreen = {
-                    navController.navigateSingleTopTo(Screen.InterestsScreen.route)
+                    if (databaseInterestsList.isNotEmpty()) {
+                        navController.navigateSingleTopTo(Screen.InterestsScreen.route)
+                    } else {
+                        navController.navigateSingleTopTo(Screen.HomeScreen.route)
+                    }
                 }
             )
         }
@@ -54,24 +61,33 @@ fun Navigation(
             )
         }
         composable(
-            route = "${Screen.SingleEventScreen.route}/{event}",
+            route = "${Screen.SingleEventScreen.route}/{eventId}",
             arguments = listOf(
-                navArgument("event") {
-                    type = NavType.LongType
+                navArgument("eventId") {
+                    type = NavType.StringType
                 }
             )
         ) { navBackStackEntry ->
             val eventId = navBackStackEntry.arguments
                 ?.getString("eventId")
-                ?.toLong()
 
-            SingleEventScreen(
-                eventId = eventId,
-                navController = navController
-            )
+            if (eventId != null) {
+                SingleEventScreen(
+                    eventId = eventId,
+                    navController = navController
+                )
+            }
         }
     }
 }
 
 fun NavHostController.navigateSingleTopTo(route: String) =
-    this.navigate(route) { launchSingleTop = true }
+    this.navigate(route) {
+        popUpTo(
+            this@navigateSingleTopTo.graph.findStartDestination().id
+        ) {
+            saveState = true
+        }
+        launchSingleTop = true
+        restoreState = true
+    }

@@ -18,9 +18,13 @@ class InterestsViewModel @Inject constructor(
     val recentInterests: StateFlow<List<Interest>>
         get() = _recentInterests
 
-    init {
-        getAllRecentInterests()
-    }
+//    init {
+//        getAllRecentInterests()
+//    }
+
+//    fun addInterest(interest: String){
+//        _recentInterests.value.
+//    }
 
     private fun getAllRecentInterests() = viewModelScope.launch {
          localStorageRepositoryImpl.getRecentInterests().onEach {

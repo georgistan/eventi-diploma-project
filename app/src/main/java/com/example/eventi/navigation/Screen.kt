@@ -1,10 +1,7 @@
 package com.example.eventi.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Analytics
-import androidx.compose.material.icons.filled.CalendarViewDay
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Memory
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 
 sealed class Screen(
@@ -33,13 +30,13 @@ object Home : BottomNavItem {
 
 object MyEvents : BottomNavItem {
     override val title: String = "My Events"
-    override val icon: ImageVector = Icons.Default.CalendarViewDay
+    override val icon: ImageVector = Icons.Default.Event
     override val screens: List<Screen> = listOf(Screen.MyEventsScreen)
 }
 
 object Memories : BottomNavItem {
     override val title: String = "Memories"
-    override val icon: ImageVector = Icons.Default.Memory
+    override val icon: ImageVector = Icons.Default.EventNote
     override val screens: List<Screen> = listOf(Screen.MemoriesScreen)
 }
 

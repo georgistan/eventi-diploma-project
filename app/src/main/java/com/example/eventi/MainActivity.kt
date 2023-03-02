@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.compose.rememberNavController
 import com.example.eventi.navigation.Navigation
+import com.example.eventi.repository.interests.Interest
 import com.example.eventi.ui.theme.EventiTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,14 +24,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-val interestsData = listOf(
-    "Academic",
-    "Community",
-    "Concerts",
-    "Conferences",
-    "Expos",
-    "Festivals",
-    "Performing Arts",
-    "Sports"
-)

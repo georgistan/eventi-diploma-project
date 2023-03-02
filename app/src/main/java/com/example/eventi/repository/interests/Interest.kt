@@ -1,5 +1,14 @@
 package com.example.eventi.repository.interests
 
-data class Interest(
-    var content: String
-)
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+
+
+class Interest(
+    val id: Int,
+    var label: String,
+    initialSelected: Boolean = false
+) {
+    var isSelected: Boolean by mutableStateOf(initialSelected)
+}
