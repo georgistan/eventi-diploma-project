@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.eventi.repository.interests.Interest
+import com.example.eventi.data.local.interests.Interest
 
 @Composable
 fun InterestItemsGrid(

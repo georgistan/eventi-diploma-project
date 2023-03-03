@@ -8,13 +8,12 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.eventi.R
-import com.example.eventi.repository.events.Event
+import com.example.eventi.data.network.events.Event
 import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
 

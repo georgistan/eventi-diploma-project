@@ -14,11 +14,15 @@ import com.example.eventi.ui.theme.PrimaryOrange
 @Composable
 fun DoneButton(
     onClickDoneButton: () -> Unit,
+    onAddUserInterests: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Button(
         shape = RoundedCornerShape(10),
-        onClick = onClickDoneButton,
+        onClick = {
+            onAddUserInterests()
+            onClickDoneButton()
+        },
         colors = ButtonDefaults.buttonColors(PrimaryOrange),
         modifier = modifier
             .fillMaxWidth()

@@ -1,20 +1,24 @@
 package com.example.eventi.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.eventi.repository.interests.Interest
 import com.example.eventi.ui.app.screens.*
+import com.example.eventi.viewmodels.InterestsViewModel
 
 @Composable
 fun Navigation(
-    navController: NavHostController
+    navController: NavHostController,
+    viewModel: InterestsViewModel = hiltViewModel()
 ) {
-    val databaseInterestsList = listOf(Interest(0, "Joro"))
+    val databaseInterestsList = viewModel.savedInterests.collectAsState()
+
     NavHost(
         navController = navController,
         startDestination = Screen.SplashScreen.route
@@ -25,7 +29,7 @@ fun Navigation(
                     navController.popBackStack()
                 },
                 navigateToNextScreen = {
-                    if (databaseInterestsList.isNotEmpty()) {
+                    if (databaseInterestsList.value.isEmpty()) {
                         navController.navigateSingleTopTo(Screen.InterestsScreen.route)
                     } else {
                         navController.navigateSingleTopTo(Screen.HomeScreen.route)

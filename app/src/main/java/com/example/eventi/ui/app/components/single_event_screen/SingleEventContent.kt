@@ -1,6 +1,5 @@
 package com.example.eventi.ui.app.components.single_event_screen
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -17,7 +16,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.eventi.R
-import com.example.eventi.repository.events.Event
+import com.example.eventi.data.network.events.Event
 import com.example.eventi.ui.theme.BackgroundGray
 import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryBlue

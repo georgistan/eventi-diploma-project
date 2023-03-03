@@ -1,8 +1,8 @@
 package com.example.eventi.repository.events
 
 import com.example.eventi.data.network.events.EventApi
-import com.example.eventi.data.network.events.EventResponse
-import com.example.eventi.data.network.model.EntityMapper
+import com.example.eventi.data.EntityMapper
+import com.example.eventi.data.network.events.Event
 import javax.inject.Inject
 import javax.inject.Singleton
 

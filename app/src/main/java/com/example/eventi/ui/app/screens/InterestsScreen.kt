@@ -6,18 +6,18 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eventi.ui.app.components.interest_screen.DoneButton
 import com.example.eventi.ui.app.components.interest_screen.Header
 import com.example.eventi.ui.app.components.interest_screen.InterestItemsGrid
-import com.example.eventi.viewmodels.TestViewModel
+import com.example.eventi.viewmodels.InterestsViewModel
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun InterestsScreen(
     onClickDoneButton: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: TestViewModel = viewModel()
+    viewModel: InterestsViewModel = hiltViewModel()
 ) {
     Scaffold {
         Column(
@@ -27,12 +27,15 @@ fun InterestsScreen(
             Header()
             InterestItemsGrid(
                 modifier = modifier.weight(2f),
-                list = viewModel.interestsList,
+                list = viewModel.interestsData,
                 onClickItem = { item, selected ->
-                    viewModel.changeTaskChecked(item, selected)
+                    viewModel.changeInterestSelected(item, selected)
                 }
             )
-            DoneButton(onClickDoneButton = onClickDoneButton)
+            DoneButton(
+                onClickDoneButton = onClickDoneButton,
+                onAddUserInterests = { viewModel.addInterestsToStorage() }
+            )
         }
     }
 }

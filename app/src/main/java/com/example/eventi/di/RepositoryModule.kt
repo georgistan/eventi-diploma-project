@@ -1,7 +1,6 @@
 package com.example.eventi.di
 
 import com.example.eventi.data.network.events.EventApi
-import com.example.eventi.data.network.model.EntityMapper
 import com.example.eventi.repository.events.EventRepositoryImpl
 import dagger.Module
 import dagger.Provides

@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.eventi.navigation.BottomNavigation
 import com.example.eventi.ui.app.components.analytics_screen.AnalyticsContent
 import com.example.eventi.ui.app.components.memories_screen.MemoriesContent
@@ -15,7 +16,7 @@ import com.example.eventi.ui.app.components.memories_screen.MemoriesContent
 @Composable
 fun AnalyticsScreen(
     modifier: Modifier = Modifier,
-    navController: NavController
+    navController: NavHostController
 ) {
     Scaffold(
         modifier = modifier

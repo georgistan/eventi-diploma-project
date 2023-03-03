@@ -1,9 +1,8 @@
-package com.example.eventi.repository.interests
+package com.example.eventi.data.local.interests
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-
 
 class Interest(
     val id: Int,

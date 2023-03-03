@@ -1,4 +1,4 @@
-package com.example.eventi.repository.events
+package com.example.eventi.data.network.events
 
 // domain model
 data class Event(

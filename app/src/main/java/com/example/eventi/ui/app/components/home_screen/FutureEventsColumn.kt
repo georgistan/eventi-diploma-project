@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.eventi.R
-import com.example.eventi.repository.events.Event
+import com.example.eventi.data.network.events.Event
 
 @Composable
 fun FutureEventsColumn(

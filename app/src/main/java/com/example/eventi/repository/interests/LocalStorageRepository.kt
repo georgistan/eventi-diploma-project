@@ -1,12 +1,13 @@
 package com.example.eventi.repository.interests
 
+import com.example.eventi.data.local.interests.Interest
 import kotlinx.coroutines.flow.Flow
 
 interface LocalStorageRepository {
-    suspend fun getRecentInterests(): Flow<List<Interest>>
+    fun getInterests(): Flow<List<Interest>>
 
-    suspend fun addRecentInterests(interests: List<Interest>)
+    fun addInterests(interests: List<Interest>)
 
-    suspend fun clearAllRecentInterests()
+    fun clearAllInterests()
 }
 

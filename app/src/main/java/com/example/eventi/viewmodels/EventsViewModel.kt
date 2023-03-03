@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventi.data.network.events.EventApiStatus
 import com.example.eventi.di.DispatcherIO
-import com.example.eventi.repository.events.Event
+import com.example.eventi.data.network.events.Event
 import com.example.eventi.repository.events.EventRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
