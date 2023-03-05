@@ -1,8 +1,18 @@
+buildscript {
+    allprojects {
+        repositories {
+            google()
+            mavenCentral()
+        }
+    }
+}
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'realm-android'
 }
 
 android {
@@ -65,7 +75,6 @@ dependencies {
     def nav_version = "2.5.3"
     implementation 'androidx.navigation:navigation-runtime-ktx:2.5.3'
     implementation("androidx.navigation:navigation-compose:$nav_version")
-    implementation "androidx.navigation:navigation-compose:$rootProject.composeNavigationVersion"
 
     // moshi library for json parsing
     implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
@@ -79,6 +88,12 @@ dependencies {
     // retrofit
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    // permissions support
+    implementation 'com.google.accompanist:accompanist-permissions:0.24.13-rc'
+
+    // charts
+//    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
