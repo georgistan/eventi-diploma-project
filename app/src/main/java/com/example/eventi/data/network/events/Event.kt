@@ -8,6 +8,7 @@ data class Event(
     val category: String,
     val startsAt: String,
     val predictedEnd: String,
-    val rank: Int
+    val rank: Int,
+    val isAttended: Boolean = false
     // and so on..
 )

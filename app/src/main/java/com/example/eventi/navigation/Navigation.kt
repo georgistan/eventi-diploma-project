@@ -2,7 +2,6 @@ package com.example.eventi.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -15,7 +14,7 @@ import com.example.eventi.viewmodels.InterestsViewModel
 @Composable
 fun Navigation(
     navController: NavHostController,
-    viewModel: InterestsViewModel = hiltViewModel()
+    viewModel: InterestsViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
     val databaseInterestsList = viewModel.savedInterests.collectAsState()
 
@@ -32,6 +31,9 @@ fun Navigation(
                     if (databaseInterestsList.value.isEmpty()) {
                         navController.navigateSingleTopTo(Screen.InterestsScreen.route)
                     } else {
+                        databaseInterestsList.value.forEach {
+                            println(it.label)
+                        }
                         navController.navigateSingleTopTo(Screen.HomeScreen.route)
                     }
                 }
