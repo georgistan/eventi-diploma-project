@@ -1,9 +1,10 @@
 package com.example.eventi.navigation
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
@@ -12,11 +13,17 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.eventi.ui.theme.DarkIconOrange
 import com.example.eventi.ui.theme.EventiTypography
-import com.example.eventi.ui.theme.OrangeLight
 import com.example.eventi.ui.theme.OrangeLightest
+import androidx.compose.material.BottomNavigation
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.unit.dp
+import com.example.eventi.ui.theme.OrangeLight
 
 @Composable
 fun BottomNavigation(
+    modifier: Modifier = Modifier,
     navController: NavController
 ) {
     val items = listOf(
@@ -26,7 +33,7 @@ fun BottomNavigation(
         Analytics
     )
 
-    androidx.compose.material.BottomNavigation(
+    BottomNavigation(
         backgroundColor = OrangeLightest
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -47,8 +54,6 @@ fun BottomNavigation(
                         style = EventiTypography.subtitle2.copy(color = DarkIconOrange, fontSize = 10.sp)
                     )
                 },
-                selectedContentColor = Color.Black,
-                unselectedContentColor = Color.Black,
                 alwaysShowLabel = true,
                 selected = item.screens.firstOrNull { it.route == currentRoute } != null,
                 onClick = {
@@ -62,6 +67,11 @@ fun BottomNavigation(
                         launchSingleTop = true
                         restoreState = true
                     }
+                },
+                modifier = if (item.screens.firstOrNull { it.route == currentRoute } != null) {
+                    modifier.clip(RoundedCornerShape(10.dp, 10.dp, 10.dp, 10.dp)).background(color = OrangeLight).clipToBounds()
+                } else {
+                    Modifier.background(color = OrangeLightest)
                 }
             )
         }

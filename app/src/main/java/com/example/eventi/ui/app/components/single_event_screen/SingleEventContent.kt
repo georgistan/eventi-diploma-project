@@ -1,6 +1,8 @@
 package com.example.eventi.ui.app.components.single_event_screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -9,6 +11,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,10 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.eventi.R
 import com.example.eventi.data.network.events.Event
-import com.example.eventi.ui.theme.BackgroundGray
-import com.example.eventi.ui.theme.EventiTypography
-import com.example.eventi.ui.theme.PrimaryBlue
-import com.example.eventi.ui.theme.SecondaryGray
+import com.example.eventi.ui.theme.*
 
 @Composable
 fun SingleEventContent(
@@ -30,6 +33,7 @@ fun SingleEventContent(
     onClickAttendButton: () -> Unit
 ) {
     val scrollState = rememberScrollState()
+    val selected = rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = modifier.verticalScroll(scrollState)
@@ -69,25 +73,33 @@ fun SingleEventContent(
             Spacer(modifier = modifier.height(20.dp))
             OutlinedButton(
                 shape = RoundedCornerShape(10.dp),
-                onClick = onClickAttendButton,
+                onClick = {
+                          selected.value = !selected.value
+                },
                 modifier = modifier,
-                contentPadding = ButtonDefaults.ButtonWithIconContentPadding
+                contentPadding = ButtonDefaults.ContentPadding,
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (selected.value) ValidationGreen else Color.White
+                )
             ) {
                 Row(
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Attend",
+                        text = if (selected.value) "Attending" else "Attend",
                         style = EventiTypography.subtitle1,
+                        color = if (selected.value) Color.White else Color.Black
                     )
                     Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-                    Icon(
-                        Icons.Filled.Done,
-                        contentDescription = "date of event",
-                        modifier = modifier.size(ButtonDefaults.IconSize),
-                        tint = Color.Black
-                    )
+                    if (selected.value) {
+                        Icon(
+                            Icons.Filled.Done,
+                            contentDescription = "date of event",
+                            modifier = modifier.size(ButtonDefaults.IconSize),
+                            tint = if (selected.value) Color.White else Color.Black
+                        )
+                    }
                 }
             }
             Spacer(modifier = modifier.height(20.dp))

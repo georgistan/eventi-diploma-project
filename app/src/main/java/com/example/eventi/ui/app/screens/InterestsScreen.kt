@@ -17,7 +17,7 @@ import com.example.eventi.viewmodels.InterestsViewModel
 fun InterestsScreen(
     onClickDoneButton: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: InterestsViewModel = hiltViewModel()
+    viewModel: InterestsViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
     Scaffold {
         Column(
@@ -34,7 +34,7 @@ fun InterestsScreen(
             )
             DoneButton(
                 onClickDoneButton = onClickDoneButton,
-                onAddUserInterests = { viewModel.addInterestsToStorage() }
+                onAddUserInterests = { println(viewModel.userSelectedInterests.size) }
             )
         }
     }
