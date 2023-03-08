@@ -8,6 +8,7 @@ import com.example.eventi.data.network.events.EventApiStatus
 import com.example.eventi.di.DispatcherIO
 import com.example.eventi.data.network.events.Event
 import com.example.eventi.repository.events.EventRepositoryImpl
+import com.example.eventi.repository.interests.LocalStorageRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EventsViewModel @Inject constructor(
-    private val repository: EventRepositoryImpl,
+    private val eventRepository: EventRepositoryImpl,
+    private val localStorageRepository: LocalStorageRepositoryImpl,
     @DispatcherIO private val dispatcherIO: CoroutineDispatcher
 ) : ViewModel() {
     private val _events = MutableStateFlow<List<Event>>(emptyList())
@@ -37,7 +39,7 @@ class EventsViewModel @Inject constructor(
             _status.value = EventApiStatus.LOADING
             try {
                 val newEvents = withContext(dispatcherIO) {
-                    repository.getEvents()
+                    eventRepository.getEvents()
                 }
                 _events.value = newEvents
                 _status.value = EventApiStatus.DONE
@@ -51,4 +53,11 @@ class EventsViewModel @Inject constructor(
     fun getEvent(eventId: String): Event? {
         return events.value.find { it.id == eventId }
     }
+
+    fun manageEventAttendance(event: Event) {
+        viewModelScope.launch {
+            localStorageRepository.manageEventAttendance(event = event)
+        }
+    }
+
 }

@@ -3,6 +3,14 @@
 
     <!--  -->
     <string name="search">Search</string>
+    <string name="view_all">View all</string>
+
+    <!-- Interests -->
+    <string name="done">Done</string>
+    <string name="your_interests">Your interests</string>
+    <string name="pick_interests_instruction">Pick your favorite interest to find events related to you</string>
+    <string name="add_interest">Add interest</string>
+    <string name="unselect_interest">Unselect interest</string>
 
     <!-- Events -->
     <string name="online_event">Online event</string>
@@ -15,6 +23,30 @@
     <string name="this_week">This week</string>
     <string name="explore_others">Explore others</string>
 
+    <!-- Single Event -->
+    <string name="back_to_home">Back to home screen</string>
+    <string name="event_image">Event image</string>
+    <string name="attendance_question">Will you be attending this event?</string>
+    <string name="attend">Attend</string>
+    <string name="attending">Attending</string>
+    <string name="attendance_confirm">Attendance confirmed</string>
+    <string name="date_of_event">Date of event</string>
+    <string name="location_of_event">Location of event</string>
+    <string name="category_of_event">Category of event</string>
+    <string name="rank_of_event">Rank of event</string>
+    <string name="event_about">About</string>
+
     <!-- My Events -->
     <string name="my_events">My events</string>
+
+    <!-- Memories -->
+    <string name="memories">Memories</string>
+    
+    <!-- Analytics -->
+    <string name="analytics">Analytics</string>
+    <string name="chart_description">Event Topics Attendance Share</string>
+
+    <!-- Splash -->
+    <string name="logo_icon">Logo icon</string>
+    
 </resources>

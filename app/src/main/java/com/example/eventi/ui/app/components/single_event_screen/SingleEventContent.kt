@@ -1,8 +1,6 @@
 package com.example.eventi.ui.app.components.single_event_screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,15 +9,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.eventi.R
 import com.example.eventi.data.network.events.Event
@@ -30,7 +27,7 @@ fun SingleEventContent(
     modifier: Modifier,
     event: Event?,
     onPopScreen: () -> Unit,
-    onClickAttendButton: () -> Unit
+    onClickAttendButton: (Event) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val selected = rememberSaveable { mutableStateOf(false) }
@@ -46,12 +43,12 @@ fun SingleEventContent(
         ) {
             Icon(
                 Icons.Default.ArrowBack,
-                contentDescription = "back to home screen"
+                contentDescription = stringResource(id = R.string.back_to_home)
             )
         }
         Image(
             painterResource(R.drawable.img_2),
-            contentDescription = "event image",
+            contentDescription = stringResource(id = R.string.event_image),
             contentScale = ContentScale.Crop,
             modifier = modifier.fillMaxWidth()
         )
@@ -67,14 +64,16 @@ fun SingleEventContent(
             }
             Spacer(modifier = modifier.height(10.dp))
             Text(
-                text = "Will you be attending this event?",
+                text = stringResource(id = R.string.attendance_question),
                 style = EventiTypography.subtitle1
             )
             Spacer(modifier = modifier.height(20.dp))
             OutlinedButton(
                 shape = RoundedCornerShape(10.dp),
                 onClick = {
-                          selected.value = !selected.value
+                    selected.value = !selected.value
+                    event?.isAttended = !event?.isAttended!!
+                    onClickAttendButton(event)
                 },
                 modifier = modifier,
                 contentPadding = ButtonDefaults.ContentPadding,
@@ -87,7 +86,11 @@ fun SingleEventContent(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = if (selected.value) "Attending" else "Attend",
+                        text = if (selected.value) {
+                            stringResource(id = R.string.attending)
+                        } else {
+                            stringResource(id = R.string.attend)
+                        },
                         style = EventiTypography.subtitle1,
                         color = if (selected.value) Color.White else Color.Black
                     )
@@ -95,7 +98,7 @@ fun SingleEventContent(
                     if (selected.value) {
                         Icon(
                             Icons.Filled.Done,
-                            contentDescription = "date of event",
+                            contentDescription = stringResource(id = R.string.attendance_confirm),
                             modifier = modifier.size(ButtonDefaults.IconSize),
                             tint = if (selected.value) Color.White else Color.Black
                         )
@@ -110,7 +113,7 @@ fun SingleEventContent(
                 Row {
                     Icon(
                         imageVector = Icons.Filled.CalendarViewMonth,
-                        contentDescription = "date of event",
+                        contentDescription = stringResource(id = R.string.date_of_event),
                         tint = PrimaryBlue,
                         modifier = modifier.weight(1f)
                     )
@@ -126,7 +129,7 @@ fun SingleEventContent(
                 Row {
                     Icon(
                         imageVector = Icons.Filled.LocationOn,
-                        contentDescription = "location of event",
+                        contentDescription = stringResource(id = R.string.location_of_event),
                         tint = PrimaryBlue,
                         modifier = modifier.weight(1f)
                     )
@@ -142,7 +145,7 @@ fun SingleEventContent(
                 Row {
                     Icon(
                         imageVector = Icons.Filled.Category,
-                        contentDescription = "category of event",
+                        contentDescription = stringResource(id = R.string.category_of_event),
                         tint = PrimaryBlue,
                         modifier = modifier.weight(1f)
                     )
@@ -157,9 +160,8 @@ fun SingleEventContent(
                 Spacer(modifier = Modifier.height(18.dp))
                 Row {
                     Icon(
-                        imageVector = Icons.Filled.
-                        Grade,
-                        contentDescription = "rank of event",
+                        imageVector = Icons.Filled.Grade,
+                        contentDescription = stringResource(id = R.string.rank_of_event),
                         tint = PrimaryBlue,
                         modifier = modifier.weight(1f)
                     )
@@ -179,7 +181,7 @@ fun SingleEventContent(
             ) {
                 Row {
                     Text(
-                        text = "About",
+                        text = stringResource(id = R.string.event_about),
                         style = EventiTypography.h2,
                         modifier = modifier
                             .padding(bottom = 10.dp)

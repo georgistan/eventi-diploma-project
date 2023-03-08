@@ -6,7 +6,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.eventi.R
 import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryBlue
 
@@ -29,7 +31,7 @@ fun SectionHeading(
             onClick = onClick
         ) {
             Text(
-                text = "View all",
+                text = stringResource(id = R.string.view_all),
                 color = PrimaryBlue,
                 style = EventiTypography.subtitle1
             )

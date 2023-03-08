@@ -3,6 +3,7 @@ buildscript {
         repositories {
             google()
             mavenCentral()
+            maven {url 'https://jitpack.io'}
         }
     }
 }
@@ -92,8 +93,8 @@ dependencies {
     // permissions support
     implementation 'com.google.accompanist:accompanist-permissions:0.24.13-rc'
 
-    // charts
-//    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    // charts library
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

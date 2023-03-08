@@ -2,13 +2,21 @@ package com.example.eventi.viewmodels
 
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.eventi.data.local.interests.Interest
+import com.example.eventi.repository.interests.LocalStorageRepository
+import com.example.eventi.repository.interests.LocalStorageRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.realm.Realm
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-//@HiltViewModel
-class InterestsViewModel : ViewModel() {
+@HiltViewModel
+class InterestsViewModel @Inject constructor(
+    private val repository: LocalStorageRepositoryImpl
+) : ViewModel() {
     private var _interestsData = generateInterestsOptions().toMutableStateList()
     val interestsData: List<Interest>
         get() = _interestsData
@@ -19,9 +27,9 @@ class InterestsViewModel : ViewModel() {
     val savedInterests: StateFlow<List<Interest>>
         get() = _savedInterests
 
-//    init {
-//        getAllSavedInterests()
-//    }
+    init {
+        getAllSavedInterests()
+    }
 
     fun changeInterestSelected(interest: Interest, checked: Boolean) {
         _interestsData.find { it.id == interest.id }?.let {
@@ -35,21 +43,19 @@ class InterestsViewModel : ViewModel() {
         }
     }
 
-//    @OptIn(FlowPreview::class)
-//    fun getAllSavedInterests() = viewModelScope.launch {
-//        _savedInterests.value = repository.getInterests().flatMapConcat {
-//            it.asFlow()
-//        }.toList()
-//    }
-//
-//
-//    fun addInterestsToStorage() = viewModelScope.launch {
-//        repository.addInterests(userSelectedInterests)
-//    }
-//
-//    fun clearRecentInterests() = viewModelScope.launch {
-//        repository.clearAllInterests()
-//    }
+    private fun getAllSavedInterests() = viewModelScope.launch {
+        repository.getInterests().collect {
+            _savedInterests.value = it
+        }
+    }
+
+    fun addInterestsToStorage() = viewModelScope.launch {
+        repository.addInterests(userSelectedInterests)
+    }
+
+    fun clearRecentInterests() = viewModelScope.launch {
+        repository.clearAllInterests()
+    }
 }
 
 private fun generateInterestsOptions() =

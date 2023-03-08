@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.Flow
 interface LocalStorageRepository {
     fun getInterests(): Flow<List<Interest>>
 
-    fun addInterests(interests: List<Interest>)
+    suspend fun addInterests(interests: List<Interest>)
 
-    fun clearAllInterests()
+    suspend fun clearAllInterests()
 }
 
