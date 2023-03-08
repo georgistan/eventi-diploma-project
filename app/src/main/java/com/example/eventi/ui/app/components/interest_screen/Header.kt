@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.eventi.R
 import com.example.eventi.ui.theme.EventiTypography
 
 @Composable
@@ -14,11 +16,11 @@ fun Header(
         modifier = modifier
     ) {
         Text(
-            text = "Your interests",
+            text = stringResource(id = R.string.your_interests),
             style = EventiTypography.h2
         )
         Text(
-            text = "Pick your favorite interest to find events related to you",
+            text = stringResource(id = R.string.pick_interests_instruction),
             style = EventiTypography.subtitle1
         )
     }

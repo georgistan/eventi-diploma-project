@@ -8,6 +8,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.example.eventi.R
 import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
 
@@ -28,7 +30,7 @@ fun DoneButton(
             .fillMaxWidth()
     ) {
         Text(
-            text = "Done",
+            text = stringResource(id = R.string.done),
             style = EventiTypography.subtitle1,
             color = Color.White
         )

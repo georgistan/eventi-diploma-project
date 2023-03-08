@@ -10,10 +10,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
+import com.example.eventi.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.eventi.ui.theme.PrimaryOrange
 import kotlinx.coroutines.delay
@@ -53,7 +55,7 @@ fun Splash(alpha: Float) {
                 .size(120.dp)
                 .alpha(alpha = alpha),
             imageVector = Icons.Default.Event,
-            contentDescription = "Logo Icon",
+            contentDescription = stringResource(id = R.string.logo_icon),
             tint = Color.White
         )
     }

@@ -6,6 +6,8 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import com.example.eventi.R
 import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
 
@@ -30,12 +32,12 @@ fun InterestItem(
             when {
                 selected -> Icon(
                     Icons.Default.Close,
-                    contentDescription = "Close",
+                    contentDescription = stringResource(id = R.string.unselect_interest),
                     tint = Color.White
                 )
                 else -> Icon(
                     Icons.Default.Add,
-                    contentDescription = "Add",
+                    contentDescription = stringResource(id = R.string.add_interest),
                     tint = Color.Gray
                 )
             }
