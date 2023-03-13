@@ -1,11 +1,14 @@
 package com.example.eventi.data.network.events
 
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 interface EventApi {
-    @GET("events/?q=sports/")
-    suspend fun getResponse(): ApiResponse
+    @GET("events")
+    suspend fun getResponse(
+        @Query("q") query: String
+    ): ApiResponse
 }
 
 enum class EventApiStatus {

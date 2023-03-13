@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -24,7 +23,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: EventsViewModel = hiltViewModel()
 ) {
-    val events by viewModel.events.collectAsState()
+    val eventsData = viewModel.fetchEvents().collectAsState()
 
     Scaffold(
         modifier = modifier.padding(top = 16.dp),
@@ -36,28 +35,13 @@ fun HomeScreen(
     ) {
         HomeContent(
             modifier = modifier,
-            onClickChangeLocation = {
-
-            },
             onClickEventCard = { eventId ->
                 navController.navigateToSingleEvent(eventId)
             },
             onClickViewAllEvents = {
 
             },
-            onClickFutureEventCard = {
-
-            },
-            onClickViewAllFutureEvents = {
-
-            },
-            onClickExploreItem = {
-
-            },
-            onClickViewAllExploreCategories = {
-
-            },
-            events = events
+            sortedListsOfEvents = eventsData.value
         )
     }
 }

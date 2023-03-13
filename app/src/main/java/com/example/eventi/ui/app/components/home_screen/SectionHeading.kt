@@ -15,7 +15,6 @@ import com.example.eventi.ui.theme.PrimaryBlue
 @Composable
 fun SectionHeading(
     modifier: Modifier,
-    contentTitle: String,
     onClick: () -> Unit
 ) {
     Row(
@@ -24,7 +23,7 @@ fun SectionHeading(
     ) {
         Text(
             modifier = modifier.weight(1f),
-            text = contentTitle,
+            text = stringResource(id = R.string.we_suggest_you),
             style = EventiTypography.h2
         )
         TextButton(
