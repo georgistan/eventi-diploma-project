@@ -24,7 +24,6 @@ fun EventsRow(
     ) {
         SectionHeading(
             modifier = modifier,
-            contentTitle = stringResource(R.string.we_suggest_you),
             onClick = onCLickViewAllButton
         )
         LazyRow(

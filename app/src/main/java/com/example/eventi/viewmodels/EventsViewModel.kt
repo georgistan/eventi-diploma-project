@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.eventi.data.local.interests.Interest
 import com.example.eventi.data.network.events.EventApiStatus
 import com.example.eventi.di.DispatcherIO
 import com.example.eventi.data.network.events.Event
@@ -23,23 +24,37 @@ class EventsViewModel @Inject constructor(
     private val localStorageRepository: LocalStorageRepositoryImpl,
     @DispatcherIO private val dispatcherIO: CoroutineDispatcher
 ) : ViewModel() {
-    private val _events = MutableStateFlow<List<Event>>(emptyList())
-    val events: StateFlow<List<Event>>
+    private val _events = MutableStateFlow<List<List<Event>>>(emptyList())
+    val events: StateFlow<List<List<Event>>>
         get() = _events
 
     private var _status = MutableLiveData<EventApiStatus>()
     var status: LiveData<EventApiStatus> = _status
 
+    private val _savedInterests = MutableStateFlow<List<Interest>>(emptyList())
+
     init {
-        getEvents()
+        fetchInterests()
     }
 
-    private fun getEvents() {
+    private fun fetchInterests() = viewModelScope.launch {
+        localStorageRepository.getInterests().collect {
+            _savedInterests.value = it
+        }
+    }
+
+    fun fetchEvents(): StateFlow<List<List<Event>>> {
         viewModelScope.launch {
             _status.value = EventApiStatus.LOADING
             try {
                 val newEvents = withContext(dispatcherIO) {
-                    eventRepository.getEvents()
+                    val eventsByCategory = mutableListOf<List<Event>>()
+
+                    for (interest in _savedInterests.value){
+                        eventsByCategory.add(eventRepository.getEventsByCategory(interest.label))
+                    }
+
+                    eventsByCategory
                 }
                 _events.value = newEvents
                 _status.value = EventApiStatus.DONE
@@ -48,10 +63,12 @@ class EventsViewModel @Inject constructor(
                 _status.value = EventApiStatus.ERROR
             }
         }
+
+        return events
     }
 
-    fun getEvent(eventId: String): Event? {
-        return events.value.find { it.id == eventId }
+    fun fetchEvent(eventId: String): Event? {
+        return events.value.get(0).find { it.id == eventId }
     }
 
     fun manageEventAttendance(event: Event) {

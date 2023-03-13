@@ -22,7 +22,7 @@ fun SingleEventScreen(
     modifier: Modifier = Modifier,
     viewModel: EventsViewModel = hiltViewModel()
 ) {
-    val thisEvent = viewModel.getEvent(eventId)
+    val thisEvent = viewModel.fetchEvent(eventId)
 
     Scaffold(
         modifier = modifier,
