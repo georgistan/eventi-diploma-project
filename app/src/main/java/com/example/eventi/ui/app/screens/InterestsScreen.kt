@@ -15,9 +15,9 @@ import com.example.eventi.viewmodels.InterestsViewModel
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun InterestsScreen(
-    onClickDoneButton: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: InterestsViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    onClickDoneButton: () -> Unit,
+    viewModel: InterestsViewModel = hiltViewModel()
 ) {
     Scaffold {
         Column(
@@ -34,7 +34,7 @@ fun InterestsScreen(
             )
             DoneButton(
                 onClickDoneButton = onClickDoneButton,
-                onAddUserInterests = { println(viewModel.userSelectedInterests.size) }
+                onAddUserInterests = { viewModel.addInterestsToStorage() }
             )
         }
     }

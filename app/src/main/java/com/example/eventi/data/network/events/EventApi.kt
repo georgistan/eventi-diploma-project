@@ -8,7 +8,7 @@ interface EventApi {
     suspend fun getResponse(): ApiResponse
 }
 
-enum class EventApiStatus{
+enum class EventApiStatus {
     LOADING,
     ERROR,
     DONE
