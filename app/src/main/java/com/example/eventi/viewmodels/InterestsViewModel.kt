@@ -2,32 +2,26 @@ package com.example.eventi.viewmodels
 
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.eventi.data.local.interests.Interest
-import com.example.eventi.repository.interests.LocalStorageRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
-@HiltViewModel
-class InterestsViewModel @Inject constructor(
-    private val repository: LocalStorageRepositoryImpl
-) : ViewModel() {
+//@HiltViewModel
+class InterestsViewModel : ViewModel() {
     private var _interestsData = generateInterestsOptions().toMutableStateList()
     val interestsData: List<Interest>
         get() = _interestsData
 
-    private var userSelectedInterests: MutableList<Interest> = mutableListOf()
+    var userSelectedInterests: MutableList<Interest> = mutableListOf()
 
     private val _savedInterests = MutableStateFlow<List<Interest>>(emptyList())
     val savedInterests: StateFlow<List<Interest>>
         get() = _savedInterests
 
-    init {
-        getAllSavedInterests()
-    }
+//    init {
+//        getAllSavedInterests()
+//    }
 
     fun changeInterestSelected(interest: Interest, checked: Boolean) {
         _interestsData.find { it.id == interest.id }?.let {
@@ -41,21 +35,21 @@ class InterestsViewModel @Inject constructor(
         }
     }
 
-    @OptIn(FlowPreview::class)
-    fun getAllSavedInterests() = viewModelScope.launch {
-        _savedInterests.value = repository.getInterests().flatMapConcat {
-            it.asFlow()
-        }.toList()
-    }
-
-
-    fun addInterestsToStorage() = viewModelScope.launch {
-        repository.addInterests(userSelectedInterests)
-    }
-
-    fun clearRecentInterests() = viewModelScope.launch {
-        repository.clearAllInterests()
-    }
+//    @OptIn(FlowPreview::class)
+//    fun getAllSavedInterests() = viewModelScope.launch {
+//        _savedInterests.value = repository.getInterests().flatMapConcat {
+//            it.asFlow()
+//        }.toList()
+//    }
+//
+//
+//    fun addInterestsToStorage() = viewModelScope.launch {
+//        repository.addInterests(userSelectedInterests)
+//    }
+//
+//    fun clearRecentInterests() = viewModelScope.launch {
+//        repository.clearAllInterests()
+//    }
 }
 
 private fun generateInterestsOptions() =
