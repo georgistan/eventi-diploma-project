@@ -11,11 +11,11 @@ import com.google.accompanist.permissions.shouldShowRationale
 fun HandleRequest(
     permissionState: PermissionState,
     deniedContent: @Composable (Boolean) -> Unit,
-    content: @Composable () -> Unit
+    allowedContent: @Composable () -> Unit
 ) {
     when (permissionState.status) {
         is PermissionStatus.Granted -> {
-            content()
+            allowedContent()
         }
         is PermissionStatus.Denied -> {
             deniedContent(permissionState.status.shouldShowRationale)

@@ -2,7 +2,7 @@ package com.example.eventi.ui.app.components.home_screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.eventi.data.network.events.Event
+import com.example.eventi.data.network.Event
 
 @Composable
 fun EventsSection(

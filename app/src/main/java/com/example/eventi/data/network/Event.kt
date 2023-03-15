@@ -1,4 +1,4 @@
-package com.example.eventi.data.network.events
+package com.example.eventi.data.network
 
 data class Event(
     val id: String,
@@ -9,4 +9,6 @@ data class Event(
     val predictedEnd: String,
     val rank: Int,
     var isAttended: Boolean = false
-)
+) {
+    constructor() : this("", "", "", "", "", "", 0, false)
+}

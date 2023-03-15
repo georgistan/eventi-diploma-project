@@ -1,6 +1,6 @@
 package com.example.eventi.di
 
-import com.example.eventi.data.network.events.EventApi
+import com.example.eventi.data.network.EventApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

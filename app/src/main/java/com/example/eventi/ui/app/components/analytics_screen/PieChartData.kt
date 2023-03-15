@@ -1,13 +1,13 @@
 package com.example.eventi.ui.app.components.analytics_screen
 
 data class PieChartData(
-    var browserName: String?,
-    var value: Float?
+    var eventCategory: String?,
+    var attendedEventsOfCategory: Float?
 )
 
 val getPieChartData = listOf(
-    PieChartData("sports", 34.68F),
-    PieChartData("expos", 16.60F),
-    PieChartData("performing-arts", 16.15F),
-    PieChartData("community", 15.62F),
+    PieChartData("sports", 6f),
+    PieChartData("expos", 1f),
+    PieChartData("performing-arts", 2F),
+    PieChartData("community", 10F),
 )

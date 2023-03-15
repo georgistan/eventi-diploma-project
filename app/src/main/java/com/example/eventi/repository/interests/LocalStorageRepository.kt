@@ -9,5 +9,7 @@ interface LocalStorageRepository {
     suspend fun addInterests(interests: List<Interest>)
 
     suspend fun clearAllInterests()
+
+    suspend fun checkEventStored(eventId: String): Boolean
 }
 

@@ -22,7 +22,7 @@ fun RequestLocationPermission(
                 permissionState.launchPermissionRequest()
             }
         },
-        content = {
+        allowedContent = {
             PermissionGivenContent()
         }
     )

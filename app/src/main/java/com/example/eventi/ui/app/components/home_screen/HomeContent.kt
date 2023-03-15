@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.eventi.data.network.events.Event
+import com.example.eventi.data.network.Event
 
 @Composable
 fun HomeContent(

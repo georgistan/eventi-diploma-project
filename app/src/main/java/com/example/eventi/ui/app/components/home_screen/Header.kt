@@ -16,7 +16,7 @@ import com.example.eventi.ui.theme.OrangeLightest
 
 @Composable
 fun Header(
-    modifier: Modifier,
+    modifier: Modifier
 ) {
     Column(
         modifier = modifier

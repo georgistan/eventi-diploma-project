@@ -1,4 +1,4 @@
-package com.example.eventi.data.network.events
+package com.example.eventi.data.network
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

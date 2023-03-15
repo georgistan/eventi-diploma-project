@@ -9,7 +9,7 @@
 //import androidx.compose.ui.res.stringResource
 //import androidx.compose.ui.unit.dp
 //import com.example.eventi.R
-//import com.example.eventi.data.network.events.Event
+//import com.example.eventi.data.network.Event
 //
 //@Composable
 //fun FutureEventsColumn(

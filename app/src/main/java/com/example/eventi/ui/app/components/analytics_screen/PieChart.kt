@@ -81,7 +81,7 @@ fun updatePieChartWithData(
 
     for (i in data.indices) {
         val item = data[i]
-        entries.add(PieEntry(item.value ?: 0.toFloat(), item.browserName ?: ""))
+        entries.add(PieEntry(item.attendedEventsOfCategory ?: 0.toFloat(), item.eventCategory ?: ""))
     }
 
     val ds = PieDataSet(entries, "")

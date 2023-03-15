@@ -2,24 +2,23 @@ package com.example.eventi.navigation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.eventi.ui.theme.DarkIconOrange
 import com.example.eventi.ui.theme.EventiTypography
-import com.example.eventi.ui.theme.OrangeLightest
-import androidx.compose.material.BottomNavigation
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.unit.dp
 import com.example.eventi.ui.theme.OrangeLight
+import com.example.eventi.ui.theme.OrangeLightest
 
 @Composable
 fun BottomNavigation(
@@ -28,7 +27,6 @@ fun BottomNavigation(
 ) {
     val items = listOf(
         Home,
-        MyEvents,
         Memories,
         Analytics
     )

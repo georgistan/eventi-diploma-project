@@ -35,6 +35,7 @@
     <string name="category_of_event">Category of event</string>
     <string name="rank_of_event">Rank of event</string>
     <string name="event_about">About</string>
+    <string name="no_description">No description was provided by the event creator.</string>
 
     <!-- My Events -->
     <string name="my_events">My events</string>

@@ -7,6 +7,11 @@ import io.realm.annotations.Required
 open class RealmEvent(
         @PrimaryKey
         var id: String = "",
+        var title: String = "",
+        var description: String = "",
         var category: String = "",
+        var startsAt: String = "",
+        var predictedEnd: String = "",
+        var rank: Int = 0,
         var isAttended: Boolean = false
 ) : RealmObject()

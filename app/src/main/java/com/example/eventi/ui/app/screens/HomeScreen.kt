@@ -10,10 +10,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.eventi.navigation.BottomNavigation
-import com.example.eventi.navigation.Screen
-import com.example.eventi.navigation.navigateSingleTopTo
+import com.example.eventi.navigation.navigateToSingleEvent
 import com.example.eventi.ui.app.components.home_screen.HomeContent
-import com.example.eventi.viewmodels.EventsViewModel
+import com.example.eventi.viewmodels.HomeViewModel
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -21,9 +20,10 @@ import com.example.eventi.viewmodels.EventsViewModel
 fun HomeScreen(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    viewModel: EventsViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
-    val eventsData = viewModel.fetchEvents().collectAsState()
+    viewModel.fetchEvents()
+    val eventsData = viewModel.events.collectAsState()
 
     Scaffold(
         modifier = modifier.padding(top = 16.dp),
@@ -44,8 +44,4 @@ fun HomeScreen(
             sortedListsOfEvents = eventsData.value
         )
     }
-}
-
-private fun NavHostController.navigateToSingleEvent(eventId: String) {
-    this.navigateSingleTopTo("${Screen.SingleEventScreen.route}/$eventId")
 }
