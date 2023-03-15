@@ -14,11 +14,10 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
-@Singleton
-class LocalStorageRepositoryImpl @Inject constructor(
+class LocalStorageRepositoryImpl (
     private val realm: Provider<Realm>,
     private val mapper: EntityMapper,
-    @DispatcherIO private val dispatcherIO: CoroutineDispatcher
+    private val dispatcherIO: CoroutineDispatcher
 ) : LocalStorageRepository {
     override suspend fun addInterests(interests: List<Interest>) {
         realm.get().use { realm ->
@@ -35,9 +34,7 @@ class LocalStorageRepositoryImpl @Inject constructor(
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                result = transaction.where(InterestEntity::class.java)
-                    .findAll()
-                    .map { curr ->
+                result = transaction.where(InterestEntity::class.java).findAll().map { curr ->
                         mapper.mapFromInterestEntity(curr)
                     }
             }
@@ -49,14 +46,12 @@ class LocalStorageRepositoryImpl @Inject constructor(
     override suspend fun clearAllInterests() {
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                transaction.where(InterestEntity::class.java)
-                    .findAll()
-                    .deleteAllFromRealm()
+                transaction.where(InterestEntity::class.java).findAll().deleteAllFromRealm()
             }
         }
     }
 
-    suspend fun manageEventAttendance(event: Event) {
+    override suspend fun manageEventAttendance(event: Event) {
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
                 transaction.insertOrUpdate(mapper.mapToRealmEvent(event))
@@ -70,9 +65,8 @@ class LocalStorageRepositoryImpl @Inject constructor(
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                result = transaction.where(RealmEvent::class.java)
-                    .equalTo("id", eventId)
-                    .findFirst()
+                result =
+                    transaction.where(RealmEvent::class.java).equalTo("id", eventId).findFirst()
 
                 isStored = (result != null)
             }
@@ -81,17 +75,16 @@ class LocalStorageRepositoryImpl @Inject constructor(
         return isStored
     }
 
-    suspend fun getEvents() = flow {
+    override suspend fun getEvents() = flow {
         var result: List<Event> = listOf()
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                result = transaction.where(RealmEvent::class.java)
-                    .equalTo("isAttended", true)
-                    .findAll()
-                    .map { curr ->
-                        mapper.mapFromRealmEvent(curr)
-                    }
+                result =
+                    transaction.where(RealmEvent::class.java).equalTo("isAttended", true).findAll()
+                        .map { curr ->
+                            mapper.mapFromRealmEvent(curr)
+                        }
             }
         }
 
