@@ -7,14 +7,20 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.eventi.R
+import com.example.eventi.data.local.interests.Interest
+import com.example.eventi.data.network.Event
 import com.example.eventi.ui.theme.*
+import com.example.eventi.viewmodels.AnalyticsViewModel
+import com.example.eventi.viewmodels.InterestsViewModel
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
@@ -24,9 +30,18 @@ import java.util.ArrayList
 
 @Composable
 fun PieChart(
-    modifier: Modifier
-){
-    Column(modifier = modifier.fillMaxSize()) {
+    modifier: Modifier,
+    analyticsViewModel: AnalyticsViewModel = hiltViewModel(),
+    interestsViewModel: InterestsViewModel = hiltViewModel()
+) {
+    val pieChartData = analyticsViewModel.attendedEvents.collectAsState()
+    val interestsData = interestsViewModel.savedInterests.collectAsState()
+
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(top = 16.dp)
+    ) {
         Column(
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -34,7 +49,7 @@ fun PieChart(
         ) {
             Text(
                 text = stringResource(id = R.string.chart_description),
-                style = EventiTypography.subtitle2
+                style = EventiTypography.subtitle1
             )
             Column(
                 modifier = modifier
@@ -43,7 +58,7 @@ fun PieChart(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Crossfade(targetState = getPieChartData) { pieChartData ->
+                Crossfade(targetState = pieChartData.value) { pieChartData ->
                     AndroidView(
                         factory = { context ->
                             PieChart(context).apply {
@@ -64,7 +79,11 @@ fun PieChart(
                             .wrapContentSize()
                             .padding(5.dp),
                         update = {
-                            updatePieChartWithData(it, pieChartData)
+                            updatePieChartWithData(
+                                it,
+                                pieChartData,
+                                interestsData.value
+                            )
                         }
                     )
                 }
@@ -75,13 +94,16 @@ fun PieChart(
 
 fun updatePieChartWithData(
     chart: PieChart,
-    data: List<PieChartData>
+    eventData: List<Event>,
+    interestsData: List<Interest>
 ) {
     val entries = ArrayList<PieEntry>()
 
-    for (i in data.indices) {
-        val item = data[i]
-        entries.add(PieEntry(item.attendedEventsOfCategory ?: 0.toFloat(), item.eventCategory ?: ""))
+    for (interest in interestsData) {
+        val eventsOfInterest = eventData.count { it.category == interest.label }.toFloat()
+        if (eventsOfInterest > 0) {
+            entries.add(PieEntry(eventsOfInterest, interest.label))
+        }
     }
 
     val ds = PieDataSet(entries, "")
@@ -96,7 +118,7 @@ fun updatePieChartWithData(
     ds.xValuePosition = PieDataSet.ValuePosition.INSIDE_SLICE
     ds.sliceSpace = 2f
     ds.valueTextColor = R.color.white
-    ds.valueTextSize = 16f
+    ds.valueTextSize = 14f
     ds.valueTypeface = Typeface.DEFAULT_BOLD
 
     val d = PieData(ds)

@@ -34,7 +34,5 @@ fun AnalyticsContent(
         }
         item { Divider() }
         item { PieChart(modifier = modifier) }
-        item { Divider() }
-        item { PieChart(modifier = modifier) }
     }
 }

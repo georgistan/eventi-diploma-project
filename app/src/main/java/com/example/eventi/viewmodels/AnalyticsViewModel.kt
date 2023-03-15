@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MemoriesViewModel @Inject constructor(
+class AnalyticsViewModel @Inject constructor(
     private val localStorageRepository: LocalStorageRepository
 ) : ViewModel() {
     private val _attendedEvents = MutableStateFlow<List<Event>>(emptyList())

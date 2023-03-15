@@ -6,7 +6,7 @@ import com.example.eventi.data.local.interests.Interest
 import com.example.eventi.data.network.Event
 import com.example.eventi.di.DispatcherIO
 import com.example.eventi.repository.events.EventRepository
-import com.example.eventi.repository.interests.LocalStorageRepositoryImpl
+import com.example.eventi.repository.interests.LocalStorageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val eventRepository: EventRepository,
-    private val localStorageRepository: LocalStorageRepositoryImpl,
+    private val localStorageRepository: LocalStorageRepository,
     @DispatcherIO private val dispatcherIO: CoroutineDispatcher
 ) : ViewModel() {
     private val _events = MutableStateFlow<List<List<Event>>>(emptyList())

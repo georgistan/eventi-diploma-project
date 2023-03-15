@@ -7,7 +7,7 @@ import retrofit2.http.Query
 interface EventApi {
     @GET("events")
     suspend fun findEventsByCategory(
-        @Query("q") category: String,
+        @Query("category") category: String,
         @Query("sort") sortBy: String
     ): ApiResponse
 

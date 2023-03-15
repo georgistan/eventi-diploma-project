@@ -5,9 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventi.data.local.interests.Interest
 import com.example.eventi.repository.interests.LocalStorageRepository
-import com.example.eventi.repository.interests.LocalStorageRepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.realm.Realm
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -15,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class InterestsViewModel @Inject constructor(
-    private val repository: LocalStorageRepositoryImpl
+    private val repository: LocalStorageRepository
 ) : ViewModel() {
     private var _interestsData = generateInterestsOptions().toMutableStateList()
     val interestsData: List<Interest>

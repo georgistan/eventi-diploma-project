@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.eventi.data.network.Event
 import com.example.eventi.repository.events.EventRepository
-import com.example.eventi.repository.interests.LocalStorageRepositoryImpl
+import com.example.eventi.repository.interests.LocalStorageRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SingleEventViewModel @Inject constructor(
     private val eventRepository: EventRepository,
-    private val localStorageRepository: LocalStorageRepositoryImpl
+    private val localStorageRepository: LocalStorageRepository
 ) : ViewModel() {
     private val _queriedEvent = MutableStateFlow(Event())
     val queriedEvent: StateFlow<Event>
