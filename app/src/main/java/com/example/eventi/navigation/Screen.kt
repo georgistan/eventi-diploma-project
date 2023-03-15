@@ -10,7 +10,6 @@ sealed class Screen(
     object SplashScreen : Screen("splash_screen")
     object InterestsScreen : Screen("interests_screen")
     object HomeScreen : Screen("home_screen")
-    object MyEventsScreen : Screen("my_events_screen")
     object MemoriesScreen : Screen("memories_screen")
     object AnalyticsScreen : Screen("analytics_screen")
     object SingleEventScreen : Screen("single_event_screen")
@@ -26,12 +25,6 @@ object Home : BottomNavItem {
     override val title: String = "Home"
     override val icon: ImageVector = Icons.Default.Home
     override val screens: List<Screen> = listOf(Screen.HomeScreen, Screen.SingleEventScreen)
-}
-
-object MyEvents : BottomNavItem {
-    override val title: String = "My Events"
-    override val icon: ImageVector = Icons.Default.Event
-    override val screens: List<Screen> = listOf(Screen.MyEventsScreen)
 }
 
 object Memories : BottomNavItem {

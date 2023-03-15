@@ -12,13 +12,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object LocalStorageModule {
 
-    private const val realmVersion = 0L
+    private const val REALM_VERSION = 0L
     @Provides
     @Singleton
     fun provideRealmConfig(): RealmConfiguration {
         return RealmConfiguration.Builder()
             .name("eventi.db")
-            .schemaVersion(realmVersion)
+            .schemaVersion(REALM_VERSION)
             .deleteRealmIfMigrationNeeded()
             .compactOnLaunch()
             .build()

@@ -11,9 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.eventi.R
-import com.example.eventi.data.network.events.Event
+import com.example.eventi.data.network.Event
 import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
 
@@ -23,10 +24,11 @@ fun EventCard(
     event: Event,
     onClickCard: (String) -> Unit
 ) {
-    Row {
+    Row(
+        modifier = modifier.padding(bottom = 16.dp)
+    ) {
         Card(
             modifier = modifier
-//                .shadow(elevation = 2.dp)
                 .clickable {
                     onClickCard(event.id)
                 }
@@ -62,7 +64,9 @@ fun EventCard(
                         Text(
                             text = event.title,
                             color = PrimaryOrange,
-                            style = EventiTypography.body1
+                            style = EventiTypography.body1,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                     Spacer(Modifier.height(8.dp))

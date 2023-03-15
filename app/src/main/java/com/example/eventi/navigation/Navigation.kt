@@ -49,11 +49,6 @@ fun Navigation(
                 navController = navController
             )
         }
-        composable(route = Screen.MyEventsScreen.route) {
-            MyEventsScreen(
-                navController = navController
-            )
-        }
         composable(route = Screen.MemoriesScreen.route) {
             MemoriesScreen(
                 navController = navController
@@ -95,3 +90,7 @@ fun NavHostController.navigateSingleTopTo(route: String) =
         launchSingleTop = true
         restoreState = true
     }
+
+fun NavHostController.navigateToSingleEvent(eventId: String) {
+    this.navigateSingleTopTo("${Screen.SingleEventScreen.route}/$eventId")
+}

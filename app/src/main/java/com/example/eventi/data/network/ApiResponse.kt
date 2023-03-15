@@ -1,4 +1,4 @@
-package com.example.eventi.data.network.events
+package com.example.eventi.data.network
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -12,7 +12,7 @@ data class ApiResponse(
     var overflow: Boolean = false,
 
     @field:Json(name = "next")
-    var next: String,
+    var next: String?,
 
     @field:Json(name = "previous")
     var previous: String?,
