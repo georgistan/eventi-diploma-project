@@ -80,8 +80,9 @@ class LocalStorageRepositoryImpl (
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                result =
-                    transaction.where(RealmEvent::class.java).equalTo("isAttended", true).findAll()
+                result = transaction.where(RealmEvent::class.java)
+                        .equalTo("isAttended", true)
+                        .findAll()
                         .map { curr ->
                             mapper.mapFromRealmEvent(curr)
                         }

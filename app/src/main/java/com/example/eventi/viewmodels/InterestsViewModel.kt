@@ -19,15 +19,15 @@ class InterestsViewModel @Inject constructor(
     val interestsData: List<Interest>
         get() = _interestsData
 
-    var userSelectedInterests: MutableList<Interest> = mutableListOf()
-
     private val _savedInterests = MutableStateFlow<List<Interest>>(emptyList())
+
     val savedInterests: StateFlow<List<Interest>>
         get() = _savedInterests
-
     init {
         getAllSavedInterests()
     }
+
+    var userSelectedInterests: MutableList<Interest> = mutableListOf()
 
     fun changeInterestSelected(interest: Interest, checked: Boolean) {
         _interestsData.find { it.id == interest.id }?.let {

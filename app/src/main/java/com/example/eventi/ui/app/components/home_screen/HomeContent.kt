@@ -23,11 +23,6 @@ fun HomeContent(
         verticalArrangement = Arrangement.Bottom
     ) {
         item {
-            Header(
-                modifier = modifier
-            )
-        }
-        item {
             EventsSection(
                 modifier = modifier,
                 sortedEvents = sortedListsOfEvents,

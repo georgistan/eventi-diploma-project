@@ -45,7 +45,7 @@
     
     <!-- Analytics -->
     <string name="analytics">Analytics</string>
-    <string name="chart_description">Event Topics Attendance Share</string>
+    <string name="chart_description">Event Categories Attendance Share</string>
 
     <!-- Splash -->
     <string name="logo_icon">Logo icon</string>
