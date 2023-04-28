@@ -42,7 +42,7 @@ fun SingleEventScreen(
             event = event.value,
             isAttended = isEventAttended.value,
             onPopScreen = {
-                navController.popScreen()
+                navController.popBackStack()
             },
             onClickAttendButton = { event ->
                 viewModel.manageEventAttendance(event)
@@ -50,14 +50,3 @@ fun SingleEventScreen(
         )
     }
 }
-
-fun NavHostController.popScreen() =
-    this.navigate(Screen.HomeScreen.route) {
-        popUpTo(
-            this@popScreen.graph.findStartDestination().id
-        ) {
-            saveState = true
-        }
-        launchSingleTop = true
-        restoreState = true
-    }
