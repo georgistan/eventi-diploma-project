@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     private const val BASE_URL = "https://api.predicthq.com/v1/"
-    private const val ACCESS_TOKEN = "OAuQp-PHjO--ljsd4Kh0zi6goWHJSLwYFQiF2cyW"
+    private const val ACCESS_TOKEN = "A274Y1TKOwO8rNmtxb4C60WZFgAtIdAhO6hl2nW3"
 
     @Provides
     @Singleton
