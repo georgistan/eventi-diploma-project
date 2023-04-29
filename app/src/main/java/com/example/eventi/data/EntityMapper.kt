@@ -1,24 +1,30 @@
 package com.example.eventi.data
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.eventi.data.local.events.RealmEvent
 import com.example.eventi.data.network.EventResponse
 import com.example.eventi.data.network.Event
 import com.example.eventi.data.local.interests.Interest
 import com.example.eventi.data.local.interests.InterestEntity
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 open class EntityMapper {
+    @RequiresApi(Build.VERSION_CODES.O)
     fun mapToEvent(eventResponse: EventResponse): Event {
         return Event(
             id = eventResponse.id,
             title = eventResponse.title,
             description = eventResponse.description,
             category = eventResponse.category,
-            startsAt = eventResponse.start,
-            predictedEnd = eventResponse.end,
+            startsAt = formatDate(eventResponse.start),
+            predictedEnd = formatDate(eventResponse.end),
             rank = eventResponse.rank
         )
     } 
     
+    @RequiresApi(Build.VERSION_CODES.O)
     fun mapToEventList(initial: List<EventResponse>): List<Event> {
         return initial.map { mapToEvent(it) }
     }
@@ -61,4 +67,11 @@ open class EntityMapper {
             rank = realmEvent.rank
         )
     }
+}
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun formatDate(date: String): String {
+    val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+    val formattedDate = LocalDateTime.parse(date, dateFormatter)
+    return DateTimeFormatter.ofPattern("MMMM dd, yyyy | hh:mma").format(formattedDate) // August 04, 2017 | 6:39pm
 }

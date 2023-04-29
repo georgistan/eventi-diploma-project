@@ -1,5 +1,7 @@
 package com.example.eventi.repository.interests
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.eventi.data.EntityMapper
 import com.example.eventi.data.local.events.RealmEvent
 import com.example.eventi.data.local.interests.Interest
@@ -51,6 +53,7 @@ class LocalStorageRepositoryImpl (
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun manageEventAttendance(event: Event) {
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
@@ -75,6 +78,7 @@ class LocalStorageRepositoryImpl (
         return isStored
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun getEvents() = flow {
         var result: List<Event> = listOf()
 

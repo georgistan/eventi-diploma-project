@@ -56,7 +56,13 @@ fun EventCard(
                 ) {
                     Column {
                         Text(
-                            text = event.predictedEnd,
+                            text = "starts: " + event.startsAt,
+                            color = Color.Gray,
+                            style = EventiTypography.subtitle2
+                        )
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            text = "ends: " + event.predictedEnd,
                             color = Color.Gray,
                             style = EventiTypography.subtitle2
                         )
