@@ -127,7 +127,7 @@ fun SingleEventContent(
                 ) {
                     Row {
                         Icon(
-                            imageVector = Icons.Filled.CalendarViewMonth,
+                            imageVector = Icons.Filled.Today,
                             contentDescription = stringResource(id = R.string.date_of_event),
                             tint = PrimaryBlue,
                             modifier = modifier.weight(1f)
@@ -143,6 +143,22 @@ fun SingleEventContent(
                     Spacer(modifier = Modifier.height(18.dp))
                     Row {
                         Icon(
+                            imageVector = Icons.Filled.DateRange,
+                            contentDescription = stringResource(id = R.string.date_of_event),
+                            tint = PrimaryBlue,
+                            modifier = modifier.weight(1f)
+                        )
+                        if (event != null) {
+                            Text(
+                                text = event.predictedEnd,
+                                modifier.weight(3f),
+                                style = EventiTypography.subtitle1
+                            )
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(18.dp))
+                    Row {
+                        Icon(
                             imageVector = Icons.Filled.LocationOn,
                             contentDescription = stringResource(id = R.string.location_of_event),
                             tint = PrimaryBlue,
@@ -150,7 +166,7 @@ fun SingleEventContent(
                         )
                         if (event != null) {
                             Text(
-                                text = "Sofia, Hipodruma",
+                                text = event.address,
                                 modifier.weight(3f),
                                 style = EventiTypography.subtitle1,
                             )

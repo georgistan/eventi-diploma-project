@@ -8,7 +8,8 @@ data class Event(
     val startsAt: String,
     val predictedEnd: String,
     val rank: Int,
+    val address: String,
     var isAttended: Boolean = false
 ) {
-    constructor() : this("", "", "", "", "", "", 0, false)
+    constructor() : this("", "", "", "", "", "", 0, "", false)
 }

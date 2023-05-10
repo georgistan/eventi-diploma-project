@@ -41,7 +41,7 @@ fun EventCard(
         ) {
             Column {
                 Image(
-                    painterResource(R.drawable.img),
+                    painterResource(chooseImage()),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = modifier
@@ -56,13 +56,7 @@ fun EventCard(
                 ) {
                     Column {
                         Text(
-                            text = "starts: " + event.startsAt,
-                            color = Color.Gray,
-                            style = EventiTypography.subtitle2
-                        )
-                        Spacer(Modifier.height(8.dp))
-                        Text(
-                            text = "ends: " + event.predictedEnd,
+                            text = event.startsAt,
                             color = Color.Gray,
                             style = EventiTypography.subtitle2
                         )
@@ -82,3 +76,4 @@ fun EventCard(
         Spacer(Modifier.width(16.dp))
     }
 }
+private fun chooseImage(): Int = listOf(R.drawable.img, R.drawable.img_1, R.drawable.img_3).random()

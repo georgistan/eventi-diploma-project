@@ -13,6 +13,7 @@ import com.example.eventi.navigation.BottomNavigation
 import com.example.eventi.navigation.navigateToSingleEvent
 import com.example.eventi.ui.app.components.home_screen.HomeContent
 import com.example.eventi.viewmodels.HomeViewModel
+import timber.log.Timber
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -23,6 +24,7 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     viewModel.fetchEvents()
+    Timber.tag("HomesCREEN").e("Called Api")
     val eventsData = viewModel.events.collectAsState()
 
     Scaffold(
