@@ -40,7 +40,7 @@ fun Navigation(
         composable(route = Screen.InterestsScreen.route) {
             InterestsScreen(
                 onClickDoneButton = {
-                    navController.navigateSingleTopTo(Screen.HomeScreen.route)
+                    navController.popInterestsScreenNavigateHome()
                 }
             )
         }
@@ -79,6 +79,16 @@ fun Navigation(
         }
     }
 }
+
+fun NavHostController.popInterestsScreenNavigateHome() =
+    this.navigate("home_screen"){
+        popUpTo(
+            0
+        ) {
+            saveState
+        }
+        launchSingleTop = true
+    }
 
 fun NavHostController.navigateSingleTopTo(route: String) =
     this.navigate(route) {
