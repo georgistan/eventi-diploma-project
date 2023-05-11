@@ -24,7 +24,6 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     viewModel.fetchEvents()
-    Timber.tag("HomesCREEN").e("Called Api")
     val eventsData = viewModel.events.collectAsState()
 
     Scaffold(
