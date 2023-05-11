@@ -45,5 +45,5 @@ data class EventResponse(
     var country: String,
 
     @field:Json(name = "location")
-    var location: List<String> = listOf()
+    var location: List<Double> = listOf()
 )
