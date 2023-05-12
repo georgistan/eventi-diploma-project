@@ -14,7 +14,6 @@ import com.example.eventi.data.network.Event
 fun HomeContent(
     modifier: Modifier,
     onClickEventCard: (String) -> Unit,
-    onClickViewAllEvents: () -> Unit,
     sortedListsOfEvents: List<List<Event>>
 ) {
     LazyColumn(
@@ -28,11 +27,13 @@ fun HomeContent(
             )
         }
         item {
+            EventsProgressBar(isDisplayed = sortedListsOfEvents.isEmpty())
+        }
+        item {
             EventsSection(
                 modifier = modifier,
                 sortedEvents = sortedListsOfEvents,
                 onClickEventCard = onClickEventCard,
-                onClickViewAllEvents = onClickViewAllEvents
             )
         }
         item {

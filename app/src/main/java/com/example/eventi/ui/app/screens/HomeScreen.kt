@@ -39,9 +39,6 @@ fun HomeScreen(
             onClickEventCard = { eventId ->
                 navController.navigateToSingleEvent(eventId)
             },
-            onClickViewAllEvents = {
-
-            },
             sortedListsOfEvents = eventsData.value
         )
     }
