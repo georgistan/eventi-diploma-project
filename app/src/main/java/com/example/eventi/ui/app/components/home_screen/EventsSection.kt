@@ -9,13 +9,11 @@ fun EventsSection(
     modifier: Modifier,
     sortedEvents: List<List<Event>>,
     onClickEventCard: (String) -> Unit,
-    onClickViewAllEvents: () -> Unit,
 ) {
     for (listOfEvents in sortedEvents) {
         EventsRow(
             modifier = modifier,
             onClickEventCard = onClickEventCard,
-            onCLickViewAllButton = onClickViewAllEvents,
             events = listOfEvents
         )
     }
