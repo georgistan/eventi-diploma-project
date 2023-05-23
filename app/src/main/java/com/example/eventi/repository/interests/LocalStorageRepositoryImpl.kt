@@ -7,14 +7,11 @@ import com.example.eventi.data.local.events.RealmEvent
 import com.example.eventi.data.local.interests.Interest
 import com.example.eventi.data.local.interests.InterestEntity
 import com.example.eventi.data.network.Event
-import com.example.eventi.di.DispatcherIO
 import io.realm.Realm
 import io.realm.kotlin.executeTransactionAwait
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 
 class LocalStorageRepositoryImpl (
     private val realm: Provider<Realm>,
@@ -36,7 +33,9 @@ class LocalStorageRepositoryImpl (
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                result = transaction.where(InterestEntity::class.java).findAll().map { curr ->
+                result = transaction.where(InterestEntity::class.java)
+                    .findAll()
+                    .map { curr ->
                         mapper.mapFromInterestEntity(curr)
                     }
             }
@@ -57,19 +56,31 @@ class LocalStorageRepositoryImpl (
     override suspend fun manageEventAttendance(event: Event) {
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                transaction.insertOrUpdate(mapper.mapToRealmEvent(event))
+                val eventToBeManaged = transaction.where(RealmEvent::class.java)
+                    .equalTo("id", event.id)
+                    .findFirst()
+
+                when (eventToBeManaged) {
+                    null -> {
+                        transaction.insert(mapper.mapToRealmEvent(event))
+                    }
+                    else -> {
+                        eventToBeManaged.isAttended = false
+                    }
+                }
             }
         }
     }
 
     override suspend fun checkEventStored(eventId: String): Boolean {
         var result: RealmEvent?
-        var isStored: Boolean = false
+        var isStored = false
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                result =
-                    transaction.where(RealmEvent::class.java).equalTo("id", eventId).findFirst()
+                result = transaction.where(RealmEvent::class.java)
+                        .equalTo("id", eventId)
+                        .findFirst()
 
                 isStored = (result != null)
             }
@@ -84,8 +95,9 @@ class LocalStorageRepositoryImpl (
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
-                result =
-                    transaction.where(RealmEvent::class.java).equalTo("isAttended", true).findAll()
+                result = transaction.where(RealmEvent::class.java)
+                        .equalTo("isAttended", true)
+                        .findAll()
                         .map { curr ->
                             mapper.mapFromRealmEvent(curr)
                         }
