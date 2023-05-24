@@ -39,7 +39,7 @@ class SingleEventViewModel @Inject constructor(
 
     fun checkEventAttended(eventId: String) {
         viewModelScope.launch {
-            _isQueriedEventAttended.value = localStorageRepository.checkEventStored(eventId)
+            _isQueriedEventAttended.value = localStorageRepository.checkEventAttended(eventId)
         }
     }
 }
