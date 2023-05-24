@@ -13,7 +13,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow
 import javax.inject.Provider
 
-class LocalStorageRepositoryImpl (
+class LocalStorageRepositoryImpl(
     private val realm: Provider<Realm>,
     private val mapper: EntityMapper,
     private val dispatcherIO: CoroutineDispatcher
@@ -72,21 +72,31 @@ class LocalStorageRepositoryImpl (
         }
     }
 
-    override suspend fun checkEventStored(eventId: String): Boolean {
+    @RequiresApi(Build.VERSION_CODES.O)
+    override suspend fun checkEventAttended(eventId: String): Boolean {
         var result: RealmEvent?
-        var isStored = false
+        var isAttended = false
 
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
                 result = transaction.where(RealmEvent::class.java)
-                        .equalTo("id", eventId)
-                        .findFirst()
+                    .equalTo("id", eventId)
+                    .findFirst()
 
-                isStored = (result != null)
+                if (result != null) {
+                    val mappedResult = result?.let {
+                        mapper.mapFromRealmEvent(it)
+                    }
+
+                    isAttended = when (mappedResult?.isAttended) {
+                        true -> false
+                        else -> true
+                    }
+                }
             }
         }
 
-        return isStored
+        return isAttended
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -96,11 +106,11 @@ class LocalStorageRepositoryImpl (
         realm.get().use { realm ->
             realm.executeTransactionAwait(dispatcherIO) { transaction ->
                 result = transaction.where(RealmEvent::class.java)
-                        .equalTo("isAttended", true)
-                        .findAll()
-                        .map { curr ->
-                            mapper.mapFromRealmEvent(curr)
-                        }
+                    .equalTo("isAttended", true)
+                    .findAll()
+                    .map { curr ->
+                        mapper.mapFromRealmEvent(curr)
+                    }
             }
         }
 

@@ -13,7 +13,7 @@ interface LocalStorageRepository {
 
     suspend fun manageEventAttendance(event: Event)
 
-    suspend fun checkEventStored(eventId: String): Boolean
+    suspend fun checkEventAttended(eventId: String): Boolean
 
     suspend fun getEvents() : Flow<List<Event>>
 }
