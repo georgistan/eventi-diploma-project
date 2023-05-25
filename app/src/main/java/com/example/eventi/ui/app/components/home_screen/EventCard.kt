@@ -41,7 +41,7 @@ fun EventCard(
         ) {
             Column {
                 Image(
-                    painterResource(R.drawable.img),
+                    painterResource(chooseImage(event.category)),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = modifier
@@ -56,7 +56,7 @@ fun EventCard(
                 ) {
                     Column {
                         Text(
-                            text = event.predictedEnd,
+                            text = event.startsAt,
                             color = Color.Gray,
                             style = EventiTypography.subtitle2
                         )
@@ -75,4 +75,15 @@ fun EventCard(
         }
         Spacer(Modifier.width(16.dp))
     }
+}
+private fun chooseImage(eventCategory: String): Int = when(eventCategory) {
+    "performing arts" -> R.drawable.img_9
+    "festivals" -> R.drawable.img_8
+    "expos" -> R.drawable.img_7
+    "community" -> R.drawable.img_6
+    "academic" -> R.drawable.img_5
+    "concerts" -> R.drawable.img
+    "conferences" -> R.drawable.img_3
+    "sports" -> R.drawable.img_4
+    else -> R.drawable.img_1
 }

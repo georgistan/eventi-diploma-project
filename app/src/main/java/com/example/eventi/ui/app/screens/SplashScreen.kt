@@ -3,12 +3,11 @@ package com.example.eventi.ui.app.screens
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import com.example.eventi.R
 import androidx.compose.ui.Alignment
@@ -17,6 +16,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.eventi.ui.theme.EventiTypography
 import com.example.eventi.ui.theme.PrimaryOrange
 import kotlinx.coroutines.delay
 
@@ -50,13 +51,25 @@ fun Splash(alpha: Float) {
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Icon(
-            modifier = Modifier
-                .size(120.dp)
-                .alpha(alpha = alpha),
-            imageVector = Icons.Default.Event,
-            contentDescription = stringResource(id = R.string.logo_icon),
-            tint = Color.White
-        )
+        Row(
+            horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                modifier = Modifier
+                    .alpha(alpha = alpha),
+                text = stringResource(R.string.app_name),
+                style = EventiTypography.caption
+            )
+            Spacer(Modifier.width(8.dp))
+            Icon(
+                modifier = Modifier
+                    .size(120.dp)
+                    .alpha(alpha = alpha),
+                imageVector = Icons.Default.Event,
+                contentDescription = stringResource(id = R.string.logo_icon),
+                tint = Color.White
+            )
+        }
     }
 }

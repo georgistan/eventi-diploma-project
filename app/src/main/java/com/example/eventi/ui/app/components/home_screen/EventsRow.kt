@@ -14,7 +14,6 @@ import com.example.eventi.data.network.Event
 fun EventsRow(
     modifier: Modifier,
     onClickEventCard: (String) -> Unit,
-    onCLickViewAllButton: () -> Unit,
     events: List<Event>
 ) {
     Column(
@@ -22,7 +21,7 @@ fun EventsRow(
     ) {
         SectionHeading(
             modifier = modifier,
-            onClick = onCLickViewAllButton
+            sectionCategory = events[0].category
         )
         LazyRow(
             contentPadding = PaddingValues(start = 16.dp),

@@ -3,18 +3,15 @@ package com.example.eventi.ui.app.components.single_event_screen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,15 +33,22 @@ fun SingleEventContent(
     LazyColumn {
         item {
             FloatingActionButton(
+                modifier = modifier.fillMaxWidth(),
                 onClick = onPopScreen,
-                containerColor = SecondaryGray,
+                containerColor = PrimaryOrange,
                 contentColor = Color.White,
-                shape = RoundedCornerShape(16.dp)
+                shape = RectangleShape
             ) {
-                Icon(
-                    Icons.Default.ArrowBack,
-                    contentDescription = stringResource(id = R.string.back_to_home)
-                )
+                Row {
+                    Icon(
+                        Icons.Default.ArrowBack,
+                        contentDescription = stringResource(id = R.string.back_to_home),
+                        modifier = modifier.padding(start = 16.dp)
+                    )
+                    Spacer(
+                        modifier = modifier.weight(2f)
+                    )
+                }
             }
         }
         item {
@@ -123,7 +127,7 @@ fun SingleEventContent(
                 ) {
                     Row {
                         Icon(
-                            imageVector = Icons.Filled.CalendarViewMonth,
+                            imageVector = Icons.Filled.Today,
                             contentDescription = stringResource(id = R.string.date_of_event),
                             tint = PrimaryBlue,
                             modifier = modifier.weight(1f)
@@ -139,6 +143,22 @@ fun SingleEventContent(
                     Spacer(modifier = Modifier.height(18.dp))
                     Row {
                         Icon(
+                            imageVector = Icons.Filled.DateRange,
+                            contentDescription = stringResource(id = R.string.date_of_event),
+                            tint = PrimaryBlue,
+                            modifier = modifier.weight(1f)
+                        )
+                        if (event != null) {
+                            Text(
+                                text = event.predictedEnd,
+                                modifier.weight(3f),
+                                style = EventiTypography.subtitle1
+                            )
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(18.dp))
+                    Row {
+                        Icon(
                             imageVector = Icons.Filled.LocationOn,
                             contentDescription = stringResource(id = R.string.location_of_event),
                             tint = PrimaryBlue,
@@ -146,7 +166,7 @@ fun SingleEventContent(
                         )
                         if (event != null) {
                             Text(
-                                text = "Sofia, Hipodruma",
+                                text = event.address,
                                 modifier.weight(3f),
                                 style = EventiTypography.subtitle1,
                             )

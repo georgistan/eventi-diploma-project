@@ -17,11 +17,13 @@
     <string name="live_event">Live event</string>
 
     <!-- Home -->
+    <string name="home">Home</string>
     <string name="find_events_near">find events near</string>
     <string name="change_location">change location</string>
     <string name="we_suggest_you">We suggest you</string>
     <string name="this_week">This week</string>
     <string name="explore_others">Explore others</string>
+    <string name="loading">Loading…</string>
 
     <!-- Single Event -->
     <string name="back_to_home">Back to home screen</string>
