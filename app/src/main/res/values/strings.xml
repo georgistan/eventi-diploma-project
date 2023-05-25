@@ -23,6 +23,7 @@
     <string name="we_suggest_you">We suggest you</string>
     <string name="this_week">This week</string>
     <string name="explore_others">Explore others</string>
+    <string name="loading">Loading…</string>
 
     <!-- Single Event -->
     <string name="back_to_home">Back to home screen</string>

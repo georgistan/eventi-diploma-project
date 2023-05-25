@@ -1,6 +1,5 @@
 package com.example.eventi.ui.app.components.analytics_screen
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
