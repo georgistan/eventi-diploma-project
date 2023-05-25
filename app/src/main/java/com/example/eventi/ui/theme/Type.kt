@@ -1,6 +1,7 @@
 package com.example.eventi.ui.theme
 
 import androidx.compose.material.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -51,4 +52,10 @@ val EventiTypography = Typography(
         fontSize = 12.sp,
         color = SecondaryGray
     ),
+    caption = TextStyle(
+        fontFamily = Inter,
+        fontWeight = FontWeight.W700,
+        fontSize = 50.sp,
+        color = Color.White
+    )
 )

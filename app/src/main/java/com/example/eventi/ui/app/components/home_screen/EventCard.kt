@@ -41,7 +41,7 @@ fun EventCard(
         ) {
             Column {
                 Image(
-                    painterResource(chooseImage()),
+                    painterResource(chooseImage(event.category)),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     modifier = modifier
@@ -76,4 +76,14 @@ fun EventCard(
         Spacer(Modifier.width(16.dp))
     }
 }
-private fun chooseImage(): Int = listOf(R.drawable.img, R.drawable.img_1, R.drawable.img_3).random()
+private fun chooseImage(eventCategory: String): Int = when(eventCategory) {
+    "performing arts" -> R.drawable.img_9
+    "festivals" -> R.drawable.img_8
+    "expos" -> R.drawable.img_7
+    "community" -> R.drawable.img_6
+    "academic" -> R.drawable.img_5
+    "concerts" -> R.drawable.img
+    "conferences" -> R.drawable.img_3
+    "sports" -> R.drawable.img_4
+    else -> R.drawable.img_1
+}
