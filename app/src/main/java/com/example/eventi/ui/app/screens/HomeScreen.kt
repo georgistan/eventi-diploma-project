@@ -3,11 +3,14 @@ package com.example.eventi.ui.app.screens
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavHostController
 import com.example.eventi.navigation.BottomNavigation
 import com.example.eventi.navigation.navigateToSingleEvent
@@ -23,7 +26,13 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
-    viewModel.fetchEvents()
+    val lifecycleEvent = rememberLifecycleEvent()
+
+    LaunchedEffect(key1 = lifecycleEvent) {
+        if (lifecycleEvent == Lifecycle.Event.ON_RESUME) {
+            viewModel.fetchEvents()
+        }
+    }
     val eventsData = viewModel.events.collectAsState()
 
     Scaffold(
@@ -42,4 +51,23 @@ fun HomeScreen(
             sortedListsOfEvents = eventsData.value
         )
     }
+}
+
+@Composable
+fun rememberLifecycleEvent(
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
+): Lifecycle.Event {
+    var state by remember { mutableStateOf(Lifecycle.Event.ON_ANY) }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            state = event
+        }
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
+    return state
 }
