@@ -12,6 +12,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.eventi.R
+import com.example.eventi.ui.theme.EventiTypography
 
 @Composable
 fun AnalyticsContent(
@@ -25,9 +26,7 @@ fun AnalyticsContent(
             ) {
                 Text(
                     text = stringResource(id = R.string.analytics),
-                    style = TextStyle(
-                        fontSize = 20.sp
-                    )
+                    style = EventiTypography.h2
                 )
             }
         }

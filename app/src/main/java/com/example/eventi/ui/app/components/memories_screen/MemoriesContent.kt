@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.sp
 import com.example.eventi.R
 import com.example.eventi.data.network.Event
 import com.example.eventi.ui.app.components.home_screen.EventCard
+import com.example.eventi.ui.theme.EventiTypography
 
 @Composable
 fun MemoriesContent(
@@ -30,9 +31,7 @@ fun MemoriesContent(
             ) {
                 Text(
                     text = stringResource(R.string.memories),
-                    style = TextStyle(
-                        fontSize = 20.sp
-                    )
+                    style = EventiTypography.h2
                 )
             }
             Divider()

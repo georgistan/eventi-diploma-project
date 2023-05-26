@@ -55,13 +55,6 @@ fun Splash(alpha: Float) {
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                modifier = Modifier
-                    .alpha(alpha = alpha),
-                text = stringResource(R.string.app_name),
-                style = EventiTypography.caption
-            )
-            Spacer(Modifier.width(8.dp))
             Icon(
                 modifier = Modifier
                     .size(120.dp)
@@ -69,6 +62,13 @@ fun Splash(alpha: Float) {
                 imageVector = Icons.Default.Event,
                 contentDescription = stringResource(id = R.string.logo_icon),
                 tint = Color.White
+            )
+            Spacer(Modifier.width(8.dp))
+            Text(
+                modifier = Modifier
+                    .alpha(alpha = alpha),
+                text = stringResource(R.string.app_name),
+                style = EventiTypography.caption
             )
         }
     }

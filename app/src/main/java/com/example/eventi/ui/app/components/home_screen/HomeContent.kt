@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.eventi.R
 import com.example.eventi.data.network.Event
+import com.example.eventi.ui.theme.EventiTypography
 
 @Composable
 fun HomeContent(
@@ -33,9 +34,7 @@ fun HomeContent(
                 ) {
                     Text(
                         text = stringResource(R.string.home),
-                        style = TextStyle(
-                            fontSize = 20.sp
-                        )
+                        style = EventiTypography.h2
                     )
                 }
                 Divider()
